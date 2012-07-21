@@ -5,6 +5,8 @@
     <meta name="layout" content="main">
 </head>
 <body>
-Authentication was successful!  ${token}
+Authentication was successful!
+
+<g:link action="testHttpGet" controller="test">Do something!</g:link>
 </body>
 </html>
