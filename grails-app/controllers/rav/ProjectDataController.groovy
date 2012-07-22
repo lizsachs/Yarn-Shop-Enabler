@@ -8,6 +8,7 @@ import grails.converters.JSON
 class ProjectDataController {
 
     def httpService
+    def calculateService
 
     def index() { }
     OauthService oauthService // or new OauthService() would work if you're not in a spring-managed class.
@@ -23,6 +24,8 @@ class ProjectDataController {
         def userName = params.userName;
         def allProjects = httpService.getProjects(userName,ravelryAccessToken);
 
-        render allProjects.projects as JSON
+        def projectStats = calculateService.countProjectDetails(userName, allProjects.projects, ravelryAccessToken);
+
+        render projectStats as JSON
     }
 }
