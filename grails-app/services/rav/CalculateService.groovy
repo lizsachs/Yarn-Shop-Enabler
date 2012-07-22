@@ -67,16 +67,19 @@ class CalculateService {
 
         def patternTypePercentages = calculatePatternTypePercent(patternTypeCount,totalPatternTypes);
 
-        return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages];
+        return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages,'patternTypes':patternTypeCount.keySet()];
     }
 
     def calculatePatternTypePercent(patternTypeCount,totalPatternTypes){
         def patternTypePercentages = []
         patternTypeCount.each{
-            float percent = it.value/totalPatternTypes*100
-            patternTypePercentages.add([it.key,percent.round(2)]);
+            patternTypePercentages.add([it.key,it.value/totalPatternTypes*100]);
         }
         patternTypePercentages;
+    }
+
+    def countStashDetails(userName, stash, token){
+
     }
 
 

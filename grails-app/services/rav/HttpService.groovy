@@ -33,4 +33,11 @@ class httpService {
 
         return patternDetails;
     }
+
+    def getStash(String userName, Token ravToken){
+        def response = oauthService.getRavelryResource(ravToken, 'https://api.ravelry.com/people/' + userName + '/stash/list.json');
+        def stash = new JsonSlurper().parseText(response.getBody());
+
+        return stash;
+    }
 }

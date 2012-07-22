@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>SUCCESS!</title>
+    <title>Enable!</title>
     <style type="text/css">
     .dojoxGridCell {font-size: 12px;}
     h2 {margin-top: 0;}
@@ -14,9 +14,10 @@
     </script>
 </head>
 <body class="Nihilo">
+<h3>Yarn Store Enabler</h3>
 <br>
 <blockquote>
-        Which user would you like to enable?
+        Which Raveler would you like to enable? (This may take a few moments for Ravelers who knit a lot!)
     <form action="ProjectData/getUserData" id="userNameForm">
         <input type="text" dojoType="dijit.form.TextBox" name="userName" value="blacktabi">
     </input>
