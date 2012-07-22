@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/rav.iml" filepath="$PROJECT_DIR$/rav.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rav-grailsPlugins.iml" filepath="$PROJECT_DIR$/rav-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rav.iml" filepath="$PROJECT_DIR$/Rav.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rav-grailsPlugins.iml" filepath="$PROJECT_DIR$/Rav-grailsPlugins.iml" />
     </modules>
   </component>
 </project>

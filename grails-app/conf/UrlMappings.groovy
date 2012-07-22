@@ -10,7 +10,8 @@ class UrlMappings {
 		"/"(view:"/index")
         "/error.gsp"(view:'/error')
         "/success.gsp"(view:'/success')
-        "/testToken.gsp"(view:'/test/testToken')
+        "/testToken.gsp"(view:'/projectData/testToken')
+        "/getUserData"(controller: "testController", action: "getUserData")
 		"500"(view:'/error')
 	}
 }
