@@ -14,10 +14,9 @@
     </script>
 </head>
 <body class="Nihilo">
-<h3>Yarn Store Enabler</h3>
-<br>
+<h1>Yarn Store Enabler</h1>
 <blockquote>
-        Which Raveler would you like to enable? (This may take a few moments for Ravelers who knit a lot!)
+        Which Raveler would you like to enable? (This may take a few moments for active fiber enthusiasts!)
     <form action="ProjectData/getUserData" id="userNameForm">
         <input type="text" dojoType="dijit.form.TextBox" name="userName" value="blacktabi">
     </input>
@@ -28,7 +27,6 @@
 </blockquote>
 <br>
 <div id="response"></div>
-<div id="projectTypeSelect"></div>
 <table>
     <tr>
 <td><div id="yarnWeightDiv" style="width: 50%; height: 300px"></div></td>

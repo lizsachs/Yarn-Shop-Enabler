@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b60a49d9-e7da-4411-b872-6f3cff8c4282" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/enable.gsp" afterPath="$PROJECT_DIR$/grails-app/views/enable.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/js/enablerJavascript.js" afterPath="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
     </list>
     <ignored path="rav.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,123 +36,6 @@
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
         <option name="CONDITION" value="&#13;&#13;Groovy" />
         <option name="LOG_MESSAGE" value="&#13;&#13;Groovy" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" line="32" class="rav.ProjectDataController" package="rav">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" line="10" class="httpService" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" line="17" class="httpService" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" line="24" class="httpService" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" line="31" class="httpService" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" line="38" class="httpService" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" line="16" class="rav.ProjectDataController" package="rav">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" line="17" class="rav.ProjectDataController" package="rav">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" line="23" class="rav.ProjectDataController" package="rav">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
     <breakpoint_any>
@@ -210,10 +95,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProjectDataController.groovy" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ProjectDataController.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="24" selection-start="206" selection-end="206" vertical-scroll-proportion="0.20576131">
+            <state line="33" column="43" selection-start="944" selection-end="944" vertical-scroll-proportion="-13.086957">
               <folding>
                 <element signature="e#13#68#0" expanded="true" />
               </folding>
@@ -224,16 +109,16 @@
       <file leaf-file-name="CalculateService.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="41" selection-start="3200" selection-end="3200" vertical-scroll-proportion="-18.961538">
+            <state line="52" column="17" selection-start="2112" selection-end="2112" vertical-scroll-proportion="-30.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enable.gsp" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="enable.gsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/views/enable.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="91" selection-start="816" selection-end="816" vertical-scroll-proportion="-6.3">
+            <state line="29" column="0" selection-start="999" selection-end="999" vertical-scroll-proportion="0.6702619">
               <folding />
             </state>
           </provider>
@@ -242,7 +127,7 @@
       <file leaf-file-name="enablerJavascript.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-app/js/enablerJavascript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="47" selection-start="3035" selection-end="3035" vertical-scroll-proportion="-16.653847">
+            <state line="26" column="0" selection-start="838" selection-end="838" vertical-scroll-proportion="-15.0">
               <folding />
             </state>
           </provider>
@@ -278,7 +163,7 @@
       <file leaf-file-name="HttpService.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1563" selection-end="1563" vertical-scroll-proportion="0.0">
+            <state line="10" column="0" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -310,11 +195,11 @@
         <option value="$PROJECT_DIR$/grails-app/views/success.gsp" />
         <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/UrlMappings.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/enable.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" />
-        <option value="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
         <option value="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" />
+        <option value="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
+        <option value="$PROJECT_DIR$/grails-app/views/enable.gsp" />
       </list>
     </option>
   </component>
@@ -730,9 +615,9 @@
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32786885" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37359792" sideWeight="0.9981928" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37359792" sideWeight="0.9981928" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -745,7 +630,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20533141" sideWeight="0.23910172" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14449127" sideWeight="0.6721311" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14449127" sideWeight="0.6264021" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -808,13 +693,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/grails-app/views/error.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="270" selection-end="270" vertical-scroll-proportion="0.23316061">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/cglib/cglib/jars/cglib-2.2.jar!/net/sf/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="28" selection-start="1437" selection-end="1437" vertical-scroll-proportion="-8.0">
@@ -859,33 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/enable.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="91" selection-start="816" selection-end="816" vertical-scroll-proportion="-6.3">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="41" selection-start="3200" selection-end="3200" vertical-scroll-proportion="-18.961538">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.grails/2.1.0/projects/rav/plugins/oauth-2.0.1/grails-app/controllers/uk/co/desirableobjects/oauth/scribe/OauthController.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="34" selection-start="2011" selection-end="2011" vertical-scroll-proportion="-23.913044">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1563" selection-end="1563" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -905,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/js/enablerJavascript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="47" selection-start="3035" selection-end="3035" vertical-scroll-proportion="-16.653847">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="77" column="80" selection-start="3177" selection-end="3177" vertical-scroll-proportion="0.0">
@@ -919,12 +767,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.grails/2.1.0/projects/rav/plugins/oauth-2.0.1/grails-app/services/uk/co/desirableobjects/oauth/scribe/OauthService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="5" selection-start="4422" selection-end="4422" vertical-scroll-proportion="0.56374806">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="24" selection-start="206" selection-end="206" vertical-scroll-proportion="0.20576131">
+        <state line="33" column="43" selection-start="944" selection-end="944" vertical-scroll-proportion="-13.086957">
           <folding>
             <element signature="e#13#68#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="17" selection-start="2112" selection-end="2112" vertical-scroll-proportion="-30.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-app/js/enablerJavascript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="838" selection-end="838" vertical-scroll-proportion="-15.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/enable.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="999" selection-end="999" vertical-scroll-proportion="0.6702619">
+          <folding />
         </state>
       </provider>
     </entry>

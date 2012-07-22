@@ -9,26 +9,6 @@ var chartData;
 function sendForm() {
     var form = dojo.byId("userNameForm");
 
-    function createPatternTypeSelect() {
-        var patternTypeDropdownOptions = [
-            {'label':'All', 'value':'All', 'selected':true}
-        ];
-        var patternTypes = chartData['projectStats']['patternTypes'].sort();
-        for (var patternTypeIndex in patternTypes) {
-            patternTypeDropdownOptions.push({'label':patternTypes[patternTypeIndex], 'value':patternTypes[patternTypeIndex]});
-        }
-
-        dojo.ready(function () {
-            var patternTypeSelect = new dijit.form.Select({
-                name:'patternTypeSelect',
-                options:patternTypeDropdownOptions,
-                onChange:function (b) {
-                    createDynamicCharts(patternTypeSelect.get('value'))
-                }
-            }).placeAt(dojo.byId('projectTypeSelect'));
-        });
-    }
-
     dojo.connect(form, "onsubmit", function(event) {
         dojo.stopEvent(event);
         dojo.byId("yarnWeightDiv").innerHTML = "";
@@ -40,11 +20,14 @@ function sendForm() {
             handleAs: "json",
             load: function(data) {
                 chartData = data;
+                if(!chartData['projectStats']['message']){
                 projectTypePieChart(chartData['projectStats']['patternTypePercentages']);
 
-                createDynamicCharts('All');
-
-                createPatternTypeSelect();
+                createDynamicProjectCharts('All');
+                }
+                else{
+                    dojo.byId('response').innerHTML = chartData['projectStats']['message'];
+                }
             },
             error: function(error) {
                 dojo.byId("response").innerHTML = "Error:" + error;
@@ -57,7 +40,7 @@ function sendForm() {
 
 dojo.addOnLoad(sendForm);
 
-function createDynamicCharts(projectType) {
+function createDynamicProjectCharts(projectType) {
     var yarnWeightData = chartData['projectStats']['yarnWeight'][projectType];
     var orderedYarnWeightLabels = [
         'Thread',
@@ -80,11 +63,11 @@ function createDynamicCharts(projectType) {
         orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
     }
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts);
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, projectType);
     dojo.byId("response").innerHTML = "";
 }
 
-function yarnWeightChart(yarnWeightLabels,yarnWeightData){
+function yarnWeightChart(yarnWeightLabels,yarnWeightData, projectType){
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
@@ -94,7 +77,7 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData){
                 margin: [ 50, 50, 100, 80]
             },
             title: {
-                text: 'Projects by Yarn Weight'
+                text: 'Projects by Yarn Weight for ' + projectType + ' Projects'
             },
             xAxis: {
                 categories: yarnWeightLabels,
@@ -159,6 +142,9 @@ function projectTypePieChart(patternTypeData){
             title: {
                 text: 'Project Types'
             },
+            subtitle: {
+                text: 'click a pie slice to see yarn weight data for selected project type'
+            },
             tooltip: {
                 formatter: function() {
                     return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*10)/10 +' %';
@@ -167,6 +153,12 @@ function projectTypePieChart(patternTypeData){
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
+                    events: {
+                    click: function(event){
+                        if(event.point.selected){createDynamicProjectCharts('All'); }
+                        else{createDynamicProjectCharts(event.point.name);}
+                    }
+                    },
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,

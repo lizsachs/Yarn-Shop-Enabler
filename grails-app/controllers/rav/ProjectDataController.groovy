@@ -15,8 +15,12 @@ class ProjectDataController {
 
     Token getToken() {
         String sessionKey = oauthService.findSessionKeyForAccessToken('ravelry')
-        return session[sessionKey]
-
+        if (session[sessionKey]){
+            return session[sessionKey];
+        }
+        else{
+            redirect(uri:  "rav");
+        }
     }
 
     def getUserData() {
@@ -24,9 +28,22 @@ class ProjectDataController {
         def userName = params.userName;
         def allProjects = httpService.getProjects(userName,ravelryAccessToken);
         def stash = httpService.getStash(userName,ravelryAccessToken);
+        def projectStats;
+        def stashStats;
 
-        def projectStats = calculateService.countProjectDetails(userName, allProjects.projects, ravelryAccessToken);
-        def stashStats = calculateService.countStashDetails(userName,stash,ravelryAccessToken);
+        if (allProjects.projects.size > 0){
+            projectStats = calculateService.countProjectDetails(userName, allProjects.projects, ravelryAccessToken);
+        }
+        else{
+            projectStats = ['message':"This user has no project data."];
+        }
+
+        if (stash.stash.size > 0){
+            stashStats = calculateService.countStashDetails(userName,stash,ravelryAccessToken);
+        }
+        else{
+            stashStats = ['message':"This user has no stash data."];
+        }
 
         def returnValues = ['projectStats':projectStats,'stashStas':stashStats];
 
