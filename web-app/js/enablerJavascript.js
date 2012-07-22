@@ -9,11 +9,11 @@ var chartData;
 function sendForm() {
     var form = dojo.byId("userNameForm");
 
-    function createPatternTypeSelect(data, patternTypeSelect) {
+    function createPatternTypeSelect() {
         var patternTypeDropdownOptions = [
             {'label':'All', 'value':'All', 'selected':true}
         ];
-        var patternTypes = chartData['patternTypes'].sort();
+        var patternTypes = chartData['projectStats']['patternTypes'].sort();
         for (var patternTypeIndex in patternTypes) {
             patternTypeDropdownOptions.push({'label':patternTypes[patternTypeIndex], 'value':patternTypes[patternTypeIndex]});
         }
@@ -40,11 +40,11 @@ function sendForm() {
             handleAs: "json",
             load: function(data) {
                 chartData = data;
-                projectTypePieChart(chartData['patternTypePercentages']);
+                projectTypePieChart(chartData['projectStats']['patternTypePercentages']);
 
                 createDynamicCharts('All');
 
-                createPatternTypeSelect( patternTypeSelect);
+                createPatternTypeSelect();
             },
             error: function(error) {
                 dojo.byId("response").innerHTML = "Error:" + error;
@@ -58,7 +58,7 @@ function sendForm() {
 dojo.addOnLoad(sendForm);
 
 function createDynamicCharts(projectType) {
-    var yarnWeightData = chartData['yarnWeight'][projectType];
+    var yarnWeightData = chartData['projectStats']['yarnWeight'][projectType];
     var orderedYarnWeightLabels = [
         'Thread',
         'Cobweb',
