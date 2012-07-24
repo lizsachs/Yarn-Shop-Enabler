@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="main"/>
 		<title>Welcome to the Local Yarn Store Enabler</title>
 		<style type="text/css" media="screen">
 			#status {
