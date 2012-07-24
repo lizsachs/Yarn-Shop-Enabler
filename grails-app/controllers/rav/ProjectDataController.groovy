@@ -7,7 +7,7 @@ import grails.converters.JSON
 
 class ProjectDataController {
 
-    def httpService
+    HttpService httpService
     def calculateService
 
     def index() { }
@@ -15,38 +15,39 @@ class ProjectDataController {
 
     Token getToken() {
         String sessionKey = oauthService.findSessionKeyForAccessToken('ravelry')
-        if (session[sessionKey]){
-            return session[sessionKey];
-        }
-        else{
-            redirect(uri:  "rav");
-        }
+        return session[sessionKey];
     }
 
     def getUserData() {
         def ravelryAccessToken = getToken();
-        def userName = params.userName;
-        def allProjects = httpService.getProjects(userName,ravelryAccessToken);
-        def stash = httpService.getStash(userName,ravelryAccessToken);
-        def projectStats;
-        def stashStats;
+        if (ravelryAccessToken){
+            def userName = params.userName;
+            def allProjects = httpService.getProjects(userName,ravelryAccessToken);
+            //def stash = httpService.getStash(userName,ravelryAccessToken);
+            def projectStats;
+            def stashStats;
 
-        if (allProjects.projects.size > 0){
-            projectStats = calculateService.countProjectDetails(userName, allProjects.projects, ravelryAccessToken);
+            if (allProjects != null && allProjects.projects.size() > 0){
+                projectStats = calculateService.countProjectDetails(userName, allProjects.projects, ravelryAccessToken);
+            }
+            else{
+                projectStats = ['message':"This user has no project data."];
+            }
+
+            if (false){
+                stashStats = calculateService.countStashDetails(userName,stash,ravelryAccessToken);
+            }
+            else{
+                stashStats = ['message':"This user has no stash data."];
+            }
+
+            def returnValues = ['projectStats':projectStats,'stashStas':stashStats];
+
+            render returnValues as JSON
         }
         else{
-            projectStats = ['message':"This user has no project data."];
-        }
+            return "redirect to login page"
 
-        if (stash.stash.size > 0){
-            stashStats = calculateService.countStashDetails(userName,stash,ravelryAccessToken);
         }
-        else{
-            stashStats = ['message':"This user has no stash data."];
-        }
-
-        def returnValues = ['projectStats':projectStats,'stashStas':stashStats];
-
-        render returnValues as JSON
     }
 }

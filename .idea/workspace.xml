@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b60a49d9-e7da-4411-b872-6f3cff8c4282" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/Config.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/enable.gsp" afterPath="$PROJECT_DIR$/grails-app/views/enable.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/js/enablerJavascript.js" afterPath="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
     </list>
@@ -95,10 +99,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProjectDataController.groovy" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ProjectDataController.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="43" selection-start="944" selection-end="944" vertical-scroll-proportion="-13.086957">
+            <state line="32" column="17" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.45531198">
               <folding>
                 <element signature="e#13#68#0" expanded="true" />
               </folding>
@@ -106,19 +110,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalculateService.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
+      <file leaf-file-name="Config.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="17" selection-start="2112" selection-end="2112" vertical-scroll-proportion="-30.0">
+            <state line="91" column="27" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enable.gsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.gsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/index.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="33" selection-start="1301" selection-end="1301" vertical-scroll-proportion="-5.9583335">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CalculateService.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="27" selection-start="1193" selection-end="1200" vertical-scroll-proportion="1.6136364">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enable.gsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/enable.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="999" selection-end="999" vertical-scroll-proportion="0.6702619">
+            <state line="35" column="0" selection-start="1154" selection-end="1154" vertical-scroll-proportion="-10.5">
               <folding />
             </state>
           </provider>
@@ -127,7 +149,7 @@
       <file leaf-file-name="enablerJavascript.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-app/js/enablerJavascript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="838" selection-end="838" vertical-scroll-proportion="-15.0">
+            <state line="15" column="0" selection-start="413" selection-end="413" vertical-scroll-proportion="-8.653846">
               <folding />
             </state>
           </provider>
@@ -142,30 +164,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="80" selection-start="3177" selection-end="3177" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UrlMappings.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/conf/UrlMappings.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="35" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HttpService.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
+            <state line="41" column="25" selection-start="1346" selection-end="1363" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#0#55#0" expanded="true" />
+                <element signature="e#13#68#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -193,13 +197,13 @@
         <option value="$PROJECT_DIR$/grails-app/services/rav/OauthService.groovy" />
         <option value="$PROJECT_DIR$/src/java/enablerJavascript.js" />
         <option value="$PROJECT_DIR$/grails-app/views/success.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/UrlMappings.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" />
+        <option value="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
+        <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/enable.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" />
-        <option value="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
-        <option value="$PROJECT_DIR$/grails-app/views/enable.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" />
       </list>
     </option>
   </component>
@@ -553,7 +557,7 @@
     <configuration default="false" name="Grails:rav" type="GrailsRunConfigurationType" factoryName="Grails">
       <module name="Rav" />
       <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
+      <setting name="cmdLine" value="run-app -stacktrace" />
       <setting name="depsClasspath" value="true" />
       <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -617,11 +621,11 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37359792" sideWeight="0.9981928" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42277825" sideWeight="0.9981928" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26384977" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2631579" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18422636" sideWeight="0.6264021" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -630,7 +634,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20533141" sideWeight="0.23910172" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14449127" sideWeight="0.6264021" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14449127" sideWeight="0.57722175" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -693,53 +697,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/cglib/cglib/jars/cglib-2.2.jar!/net/sf/cglib/proxy/MethodProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="28" selection-start="1437" selection-end="1437" vertical-scroll-proportion="-8.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/org.springframework/spring-tx/jars/spring-tx-3.1.0.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="28" selection-start="820" selection-end="820" vertical-scroll-proportion="-7.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/org.springframework/spring-aop/jars/spring-aop-3.1.0.RELEASE.jar!/org/springframework/aop/framework/Cglib2AopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="32" selection-start="3915" selection-end="3915" vertical-scroll-proportion="-7.84">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/js/Highcharts-2/js/highcharts.src.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="25" selection-start="529" selection-end="529" vertical-scroll-proportion="0.55932206">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/js/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/conf/UrlMappings.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="35" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.grails/2.1.0/projects/rav/plugins/oauth-2.0.1/grails-app/controllers/uk/co/desirableobjects/oauth/scribe/OauthController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="34" selection-start="2011" selection-end="2011" vertical-scroll-proportion="-23.913044">
           <folding />
         </state>
       </provider>
@@ -760,22 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="80" selection-start="3177" selection-end="3177" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.grails/2.1.0/projects/rav/plugins/oauth-2.0.1/grails-app/services/uk/co/desirableobjects/oauth/scribe/OauthService.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="140" column="5" selection-start="4422" selection-end="4422" vertical-scroll-proportion="0.56374806">
@@ -783,33 +727,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/index.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="43" selection-start="944" selection-end="944" vertical-scroll-proportion="-13.086957">
-          <folding>
-            <element signature="e#13#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="17" selection-start="2112" selection-end="2112" vertical-scroll-proportion="-30.0">
+        <state line="64" column="33" selection-start="1301" selection-end="1301" vertical-scroll-proportion="-5.9583335">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web-app/js/enablerJavascript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="838" selection-end="838" vertical-scroll-proportion="-15.0">
+        <state line="15" column="0" selection-start="413" selection-end="413" vertical-scroll-proportion="-8.653846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.grails/2.1.0/projects/rav/plugins/oauth-2.0.1/grails-app/controllers/uk/co/desirableobjects/oauth/scribe/OauthController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="34" selection-start="2011" selection-end="2011" vertical-scroll-proportion="-23.913044">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/org.springframework/spring-aop/jars/spring-aop-3.1.0.RELEASE.jar!/org/springframework/aop/framework/Cglib2AopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="32" selection-start="3915" selection-end="3915" vertical-scroll-proportion="-9.84">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/org.springframework/spring-tx/jars/spring-tx-3.1.0.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="28" selection-start="820" selection-end="820" vertical-scroll-proportion="0.25174826">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/cglib/cglib/jars/cglib-2.2.jar!/net/sf/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="28" selection-start="1437" selection-end="1437" vertical-scroll-proportion="0.5133333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../src/grails/grails-2.1.0/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-1.8.6.jar!/groovy/json/JsonSlurper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="586" selection-end="586" vertical-scroll-proportion="-9.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="27" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/enable.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="999" selection-end="999" vertical-scroll-proportion="0.6702619">
+        <state line="35" column="0" selection-start="1154" selection-end="1154" vertical-scroll-proportion="-10.5">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="27" selection-start="1193" selection-end="1200" vertical-scroll-proportion="1.6136364">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="25" selection-start="1346" selection-end="1363" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#13#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="17" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.45531198">
+          <folding>
+            <element signature="e#13#68#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

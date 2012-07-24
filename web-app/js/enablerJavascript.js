@@ -13,7 +13,6 @@ function sendForm() {
         dojo.stopEvent(event);
         dojo.byId("yarnWeightDiv").innerHTML = "";
         dojo.byId("projectTypeDiv").innerHTML = "";
-        dojo.byId("projectTypeSelect").innerHTML = "";
 
         var xhrArgs = {
             form: dojo.byId("userNameForm"),

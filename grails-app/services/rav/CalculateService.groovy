@@ -32,7 +32,7 @@ class CalculateService {
             totalPatternTypes++;
             if(it.pattern_id){
                 def pattern = httpService.getPatternDetails(it.pattern_id,token);
-                patternType = pattern.pattern.pattern_type.name;
+                patternType = pattern ? pattern.pattern.pattern_type.name : patternType;
                 if(patternType && patternTypeCount[patternType]){
                     patternTypeCount[patternType]++;
                 }
@@ -43,25 +43,26 @@ class CalculateService {
             else{
                 patternTypeCount[patternType]++;
             }
-
-            def projectPacks = project.project.packs;
-            def uniqueYarnsPerProject = [];
-            // we only want to count each weight of yarn once per project, but if the project uses yarns of two weights we want to count both
-            projectPacks.each{
-                if(it.yarn_weight && !uniqueYarnsPerProject.contains(it.yarn_weight.name)){
-                    uniqueYarnsPerProject.add(it.yarn_weight.name);
+            if(project != null){
+                def projectPacks = project.project.packs;
+                def uniqueYarnsPerProject = [];
+                // we only want to count each weight of yarn once per project, but if the project uses yarns of two weights we want to count both
+                projectPacks.each{
+                    if(it.yarn_weight && !uniqueYarnsPerProject.contains(it.yarn_weight.name)){
+                        uniqueYarnsPerProject.add(it.yarn_weight.name);
+                    }
                 }
-            }
-            if(!yarnWeightCount[patternType]){
-                yarnWeightCount[patternType] = initializeYarnWeightCounts.clone();
-            }
-            uniqueYarnsPerProject.each{
+                if(!yarnWeightCount[patternType]){
+                    yarnWeightCount[patternType] = initializeYarnWeightCounts.clone();
+                }
+                uniqueYarnsPerProject.each{
                     yarnWeightCount[patternType][it]++;
                     yarnWeightCount['All'][it]++;
-            }
-            if(uniqueYarnsPerProject.size() == 0){
-                yarnWeightCount['All']['No Yarn Specified']++;
-                yarnWeightCount[patternType]['No Yarn Specified']++;
+                }
+                if(uniqueYarnsPerProject.size() == 0){
+                    yarnWeightCount['All']['No Yarn Specified']++;
+                    yarnWeightCount[patternType]['No Yarn Specified']++;
+                }
             }
         }
 

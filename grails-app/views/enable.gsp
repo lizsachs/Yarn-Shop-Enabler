@@ -29,8 +29,8 @@
 <div id="response"></div>
 <table>
     <tr>
-<td><div id="yarnWeightDiv" style="width: 50%; height: 300px"></div></td>
-<td><div id="projectTypeDiv" style="width: 50%; height: 300px"></div></td>
+<td><div id="projectTypeDiv" style="width: 50%"></div></td>
+<td><div id="yarnWeightDiv" style="width: 50%"></div></td>
     </tr>
 </table>
 
