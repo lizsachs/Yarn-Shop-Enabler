@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b60a49d9-e7da-4411-b872-6f3cff8c4282" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/conf/Config.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/enable.gsp" afterPath="$PROJECT_DIR$/grails-app/views/enable.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-app/js/enablerJavascript.js" afterPath="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
-    </list>
+    <list default="true" id="b60a49d9-e7da-4411-b872-6f3cff8c4282" name="Default" comment="" />
     <ignored path="rav.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$USER_HOME$/.grails/" />
@@ -99,10 +91,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProjectDataController.groovy" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ProjectDataController.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="17" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.45531198">
+            <state line="32" column="17" selection-start="1082" selection-end="1082" vertical-scroll-proportion="-5.5102043">
               <folding>
                 <element signature="e#13#68#0" expanded="true" />
               </folding>
@@ -110,10 +102,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.groovy" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Config.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="27" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.0">
+            <state line="70" column="31" selection-start="2978" selection-end="2978" vertical-scroll-proportion="-0.028037382">
               <folding />
             </state>
           </provider>
@@ -199,11 +191,11 @@
         <option value="$PROJECT_DIR$/grails-app/views/success.gsp" />
         <option value="$PROJECT_DIR$/grails-app/conf/UrlMappings.groovy" />
         <option value="$PROJECT_DIR$/web-app/js/enablerJavascript.js" />
-        <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/enable.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/rav/HttpService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/rav/CalculateService.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
       </list>
     </option>
   </component>
@@ -776,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="27" selection-start="3911" selection-end="3911" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/enable.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="0" selection-start="1154" selection-end="1154" vertical-scroll-proportion="-10.5">
@@ -808,10 +793,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/rav/ProjectDataController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="17" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.45531198">
+        <state line="32" column="17" selection-start="1082" selection-end="1082" vertical-scroll-proportion="-5.5102043">
           <folding>
             <element signature="e#13#68#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="31" selection-start="2978" selection-end="2978" vertical-scroll-proportion="-0.028037382">
+          <folding />
         </state>
       </provider>
     </entry>
