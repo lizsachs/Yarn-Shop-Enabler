@@ -1,2 +1,5 @@
 *.class
 *.war
+grails-app/conf/Config.groovy
+
+.idea/workspace.xml
