@@ -18,14 +18,24 @@ function sendForm() {
             form: dojo.byId("userNameForm"),
             handleAs: "json",
             load: function(data) {
-                chartData = data;
-                if(!chartData['projectStats']['message']){
-                projectTypePieChart(chartData['projectStats']['patternTypePercentages']);
+                if(!data['error']){
+                    chartData = data;
+                    if(!chartData['projectStats']['message']){
+                        projectTypePieChart(chartData['projectStats']['patternTypePercentages']);
 
-                createDynamicProjectCharts('All');
+                        createDynamicProjectCharts('All');
+                    }
+                    else{
+                        dojo.byId('response').innerHTML = chartData['projectStats']['message'];
+                    }
                 }
-                else{
-                    dojo.byId('response').innerHTML = chartData['projectStats']['message'];
+                else {
+                    if(data['error']['errorCode']=='authenticationError'){
+                        window.location.href = data['error']['errorURL'];
+                    }
+                    else {
+                        dojo.byId('response').innerHTML = 'Sorry, an error occurred.\n' + data['error']['errorCode'];
+                    }
                 }
             },
             error: function(error) {
@@ -153,10 +163,10 @@ function projectTypePieChart(patternTypeData){
                 pie: {
                     allowPointSelect: true,
                     events: {
-                    click: function(event){
-                        if(event.point.selected){createDynamicProjectCharts('All'); }
-                        else{createDynamicProjectCharts(event.point.name);}
-                    }
+                        click: function(event){
+                            if(event.point.selected){createDynamicProjectCharts('All'); }
+                            else{createDynamicProjectCharts(event.point.name);}
+                        }
                     },
                     cursor: 'pointer',
                     dataLabels: {

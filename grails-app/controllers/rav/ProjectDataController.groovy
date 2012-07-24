@@ -20,6 +20,8 @@ class ProjectDataController {
 
     def getUserData() {
         def ravelryAccessToken = getToken();
+        def returnValues = [:];
+
         if (ravelryAccessToken){
             def userName = params.userName;
             def allProjects = httpService.getProjects(userName,ravelryAccessToken);
@@ -41,13 +43,12 @@ class ProjectDataController {
                 stashStats = ['message':"This user has no stash data."];
             }
 
-            def returnValues = ['projectStats':projectStats,'stashStas':stashStats];
+            returnValues = ['projectStats':projectStats,'stashStas':stashStats];
 
-            render returnValues as JSON
+        } else {
+            returnValues = ['error':['errorURL':grailsApplication.config.grails.serverURL,'errorCode':'authenticationError']];
         }
-        else{
-            return "redirect to login page"
+        render returnValues as JSON
 
-        }
     }
 }
