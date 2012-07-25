@@ -1,4 +1,4 @@
-Yarn Store Enabler
+Yarn Shop Enabler
 
 This app looks at the data in a specified Raveler's notebook and displays statistics about the Raveler's yarn usage. A fiber enthusiast could use this data to help determine which or how much yarn to buy while shopping if they don't have a specific goal in mind (not that any knitters I know would buy yarn with no purpose intended...).  
 
@@ -20,7 +20,6 @@ High level technical overview:
 The current implementation of the Yarn Store Enabler (YSE) authenticates with Ravelry, then brings up a dialog where the user can enter the name of his/her favorite Raveler.  From here, I make an AJAX request to kick off my analysis and eventually populate the page.  I grab a list of the given user's projects from the Ravelry API, then iterate over them to gather data about the projects, project details, and patterns used. Once I've aggregated the data I want to chart, I return it to the Javascript layer to render a few Highcharts charts.
 
 
-
 Overview of Code
 enablerJavascript.js - I don't have a ton of JS; what I do have lives here.  There's a form submission to make the AJAX call for chart data, a function to drive the chart creation so that I can easily re-render them with filtered data, and a couple chart-construction functions.
 
@@ -32,11 +31,13 @@ I'll be adding more methods to the CalculateService class to run data aggregatio
 
 HttpService.groovy - I wrote this class to handle HTTP requests to the Ravelry API.  It's got a few methods that aren't in use yet that I have for future implementation.  So far I'm only making GET calls and handling cases that return errors by throwing an exception.  This either displays the barebones error on the main page if it's something unexpected or redirects to the index page if there's an authentication timeout.
 
+
 Known Issues
 * Resizing the page makes the graphs do bizarre things. The pie chart starts to look like a spider. Ick.
 * I currently store the auth token in the session, so once the session times out the user has to re-authenticate. I figured nobody is going to be using this for large amounts of time, so I focused attention elsewhere given a short dev timeline.
-* The pages are ugly because I didn't spend any time this week styling them.
+* The pages are ugly because I haven't spent any time styling them.
 * Brute force API calls to aggregate data are slow and make a lot of likely unnecessary database calls.  A bulk API call would be nice here, but I didn't want to make a request for a highly specific API call for a toy project.
+
 
 Further Development
 I've been having fun with this project, so I'm bursting with ideas for further development
