@@ -1,6 +1,6 @@
 Yarn Shop Enabler
 
-This app looks at the data in a specified Raveler's notebook and displays statistics about the Raveler's yarn usage. A fiber enthusiast could use this data to help determine which or how much yarn to buy while shopping if they don't have a specific goal in mind (not that any knitters I know would buy yarn with no purpose intended...).  
+This app looks at the data in a specified Raveler's notebook and displays statistics about the Raveler's yarn usage. A fiber enthusiast could use this data to help determine which or how much yarn to buy while shopping if they don't have a specific goal in mind (not that any knitters I know would buy yarn with no purpose intended...).  Questions like, "I really like this yarn, but I'm not sure how much I'd need..." or "Sally's birthday is coming up, what kind of yarn might she like?" could be answered using this data.
 
 You can view an instance running here: <http://blacktabi.elasticbeanstalk.com/>  (This instance might go down for a few minutes periodically because I'm still playing with new features and adding them as time permits)
 
