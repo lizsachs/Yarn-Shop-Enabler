@@ -36,7 +36,7 @@ Known Issues
 * Resizing the page makes the graphs do bizarre things. The pie chart starts to look like a spider. Ick.
 * I currently store the auth token in the session, so once the session times out the user has to re-authenticate. I figured nobody is going to be using this for large amounts of time, so I focused attention elsewhere given a short dev timeline.
 * The pages are ugly because I didn't spend any time this week styling them.
-* Brute force API calls to aggregate data are slow and make a lot of likely unnecessary database calls.  A bulk API call would be nice here, but I didn't want to make a request for complicated API calls for a toy project.
+* Brute force API calls to aggregate data are slow and make a lot of likely unnecessary database calls.  A bulk API call would be nice here, but I didn't want to make a request for a highly specific API call for a toy project.
 
 Further Development
 I've been having fun with this project, so I'm bursting with ideas for further development
