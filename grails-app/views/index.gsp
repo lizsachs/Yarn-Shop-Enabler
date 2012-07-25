@@ -83,6 +83,9 @@
 		<div id="page-body" role="main">
             <h3>Local Yarn Store Enabler</h3>
             <br>
+            <div class='info_message' style="color:red">
+                ${flash.message}
+            </div>
             Please connect with Ravelry to begin!
             <oauth:connect provider="ravelry">Connect to Ravelry</oauth:connect>
 

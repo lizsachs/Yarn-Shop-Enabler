@@ -21,7 +21,7 @@
         <input type="text" dojoType="dijit.form.TextBox" name="userName" value="blacktabi">
     </input>
         <button type="submit" dojoType="dijit.form.Button" id="submitButton">
-            Enable!
+            Get Project Data
         </button>
     </form>
 </blockquote>

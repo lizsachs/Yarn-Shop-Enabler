@@ -10,19 +10,22 @@ class ProjectDataController {
     HttpService httpService
     def calculateService
 
-    def index() { }
     OauthService oauthService // or new OauthService() would work if you're not in a spring-managed class.
 
     Token getToken() {
         String sessionKey = oauthService.findSessionKeyForAccessToken('ravelry')
-        return session[sessionKey];
+        def token = session[sessionKey];
+        if (!token){
+            throw new HttpService.AuthenticationException();
+        }
+        return token
     }
 
     def getUserData() {
-        def ravelryAccessToken = getToken();
         def returnValues = [:];
 
-        if (ravelryAccessToken){
+        try{
+            def ravelryAccessToken = getToken();
             def userName = params.userName;
             def allProjects = httpService.getProjects(userName,ravelryAccessToken);
             //def stash = httpService.getStash(userName,ravelryAccessToken);
@@ -44,8 +47,9 @@ class ProjectDataController {
             }
 
             returnValues = ['projectStats':projectStats,'stashStas':stashStats];
-
-        } else {
+        }
+        catch(HttpService.AuthenticationException e){
+            flash.message = "Your authentication has timed out. Please log in again."
             returnValues = ['error':['errorURL':grailsApplication.config.grails.serverURL,'errorCode':'authenticationError']];
         }
         render returnValues as JSON
