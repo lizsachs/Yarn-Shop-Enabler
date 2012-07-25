@@ -31,7 +31,7 @@ I'll be adding more methods to the CalculateService class to run data aggregatio
 
 HttpService.groovy - I wrote this class to handle HTTP requests to the Ravelry API.  It's got a few methods that aren't in use yet that I have for future implementation.  So far I'm only making GET calls and handling cases that return errors by throwing an exception.  This either displays the barebones error on the main page if it's something unexpected or redirects to the index page if there's an authentication timeout.
 
-RavelryApi.java - extende Scribe's DefaultApi10a class with oauth configurations specific to Ravelry. If I have some time, I'm hoping to look into whether anything else is needed to add this to Scribe's repository so that Ravelry can be a built-in provider wit Scribe going forward.
+RavelryApi.java - extende Scribe's DefaultApi10a class with oauth configurations specific to Ravelry. I need to double check the Scribe documentation, but I think I should be able to add this to Scribe's repository so that Ravelry can be a built-in provider wit Scribe going forward.
 
 Known Issues
 * Resizing the page makes the graphs do bizarre things. The pie chart starts to look like a spider. Ick.
