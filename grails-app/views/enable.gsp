@@ -17,7 +17,7 @@
 <h1>Yarn Store Enabler</h1>
 <blockquote>
         Which Raveler would you like to enable? (This may take a few moments for active fiber enthusiasts!)
-    <form action="ProjectData/getUserData" id="userNameForm">
+    <form action="ProjectData/getProjectStats" id="userNameForm">
         <input type="text" dojoType="dijit.form.TextBox" name="userName" value="blacktabi">
     </input>
         <button type="submit" dojoType="dijit.form.Button" id="submitButton">

@@ -4,35 +4,37 @@ class CalculateService {
 
     def httpService
 
-    def initializeYarnWeightCounts = [
-            'Thread':0,
-            'Cobweb':0,
-            'Lace':0,
-            'Light Fingering':0,
-            'Fingering':0,
-            'Sport':0,
-            'DK':0,
-            'Worsted':0,
-            'Aran / Worsted':0,
-            'Aran':0,
-            'Bulky':0,
-            'Super Bulky':0,
-            'Other':0,
-            'No Yarn Specified':0];
+    def noYarnSpecified = 'No Yarn Specified';
 
     def initializeYardageMap = [
-            ['label':'0-150','count':0,'min':0,'max':149],
-            ['label':'150-300','count':0,'min':150,'max':299],
-            ['label':'300-450','count':0,'min':300,'max':449],
-            ['label':'450-600','count':0,'min':450,'max':599],
-            ['label':'600-750','count':0,'min':600,'max':749],
-            ['label':'750-900','count':0,'min':750,'max':899],
-            ['label':'900-1200','count':0,'min':900,'max':1199],
-            ['label':'1200-1500','count':0,'min':1200,'max':1499],
-            ['label':'1500-1800','count':0,'min':1500,'max':1799],
-            ['label':'1800-2100','count':0,'min':1800,'max':2099],
-            ['label':'2100+','count':0,'min':2100,'max':null]
+            ['0-150':['count':0,'min':0,'max':150]],
+            ['150-300':['count':0,'min':150,'max':300]],
+            ['300-450':['count':0,'min':300,'max':450]],
+            ['450-600':['count':0,'min':450,'max':600]],
+            ['600-750':['count':0,'min':600,'max':750]],
+            ['750-900':['count':0,'min':750,'max':900]],
+            ['900-1200':['count':0,'min':900,'max':1200]],
+            ['1200-1500':['count':0,'min':1200,'max':1500]],
+            ['1500-1800':['count':0,'min':1500,'max':1800]],
+            ['1800-2100':['count':0,'min':1800,'max':2100]],
+            ['2100+':['count':0,'min':2100,'max':Integer.MAX_VALUE]]
     ];
+
+    def initializeYarnWeightCounts = [
+            'Thread':[count:0, yardage:initializeYardageMap.clone()],
+            'Cobweb':[count:0, yardage:initializeYardageMap.clone()],
+            'Lace':[count:0, yardage:initializeYardageMap.clone()],
+            'Light Fingering':[count:0, yardage:initializeYardageMap.clone()],
+            'Fingering':[count:0, yardage:initializeYardageMap.clone()],
+            'Sport':[count:0, yardage:initializeYardageMap.clone()],
+            'DK':[count:0, yardage:initializeYardageMap.clone()],
+            'Worsted':[count:0, yardage:initializeYardageMap.clone()],
+            'Aran / Worsted':[count:0, yardage:initializeYardageMap.clone()],
+            'Aran':[count:0, yardage:initializeYardageMap.clone()],
+            'Bulky':[count:0, yardage:initializeYardageMap.clone()],
+            'Super Bulky':[count:0, yardage:initializeYardageMap.clone()],
+            'Other':[count:0, yardage:initializeYardageMap.clone()],
+            'No Yarn Specified':[count:0, yardage:initializeYardageMap.clone()]];
 
     // I put all of this in one service call to minimize calls to the database rather than having separate calculations for each type of data, only need to iterate through projects once.
     def countProjectDetails(userName, allProjects, token) {
@@ -73,8 +75,8 @@ class CalculateService {
                     yarnWeightCount['All'][it]++;
                 }
                 if(uniqueYarnsPerProject.size() == 0){
-                    yarnWeightCount['All']['No Yarn Specified']++;
-                    yarnWeightCount[patternType]['No Yarn Specified']++;
+                    yarnWeightCount['All'][noYarnSpecified]++;
+                    yarnWeightCount[patternType][noYarnSpecified]++;
                 }
             }
         }

@@ -11,7 +11,7 @@ class UrlMappings {
         "/error.gsp"(view:'/error')
         "/enable.gsp"(view:'/enable')
         "/testToken.gsp"(view:'/projectData/testToken')
-        "/getUserData"(controller: "testController", action: "getUserData")
+        "/getProjectStats"(controller: "projectData", action: "getProjectStats")
 		"500"(view:'/error')
 	}
 }
