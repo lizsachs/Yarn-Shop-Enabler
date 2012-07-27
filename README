@@ -4,7 +4,7 @@ This app looks at the data in a specified Raveler's notebook and displays statis
 
 You can view an instance running here: <http://blacktabi.elasticbeanstalk.com/>  (This instance might go down for a few minutes periodically because I'm still playing with new features and adding them as time permits)
 
-After authenticating with Ravelry, the user can enter a Raveler's username.  The app will display a couple charts: a pie chart showing projects by type and a column chart showing how many projects used each standard weight of yarn.  After the charts are loaded, the user can click a slice of the pie to re-load the column chart showing only yarn used for projects of the specified type. Re-click the same pie to go back to the "All" view or click a new pie to see a different selection.
+After authenticating with Ravelry, the user can enter a Raveler's username.  The app will display several charts: a pie chart showing projects by type and a column chart showing how many projects used each standard weight of yarn, as well as a coloumn chart for stash yarn weghts.  After the charts are loaded, the user can click a slice of the project pie to re-load the project column chart showing only yarn used for projects of the specified type. Re-click the same pie to go back to the "All" view or click a new pie to see a different selection.
 
 Technology
 Grails 2.1.0 <http://grails.org/>
@@ -21,7 +21,7 @@ The current implementation of the Yarn Store Enabler (YSE) authenticates with Ra
 
 
 Overview of Code
-enablerJavascript.js - I don't have a ton of JS; what I do have lives here.  There's a form submission to make the AJAX call for chart data, a function to drive the chart creation so that I can easily re-render them with filtered data, and a couple chart-construction functions.
+enablerJavascript.js - I don't have a ton of JS; what I do have lives here.  There's text field for the Raveler's username and a button to call the get data functions that fire off AJAX calls for each type of data (I call them separately so the quicker charts will show up faster and give the user something to look at while slower charts calculate), a function to drive the chart creation so that I can easily re-render them with filtered data, and a couple chart-construction functions.
 
 ProjectDataController.groovy - I have a single controller class, which currently has methods for getting an oauth token and a generic "get data" method that makes calls to the calculation service methods.  I'm likely going to refactor this a bit soon to have separate methods for calculating a Raveler's project and stash data so that those can be loaded separately from the front end.  (There are a few stubbed out sections for stash metrics I haven't implemented yet)
 
@@ -42,8 +42,8 @@ Known Issues
 
 Further Development
 I've been having fun with this project, so I'm bursting with ideas for further development
+* stash charts - refine color chart (not displayed yet) to show pies in the same colors as the yarn, add chart for fiber type?
 * add a drill down to the yarn weight chart so that users can see how much yardage they typically use for a given weight of yarn (this would also filter by project type if the main graph was already filtered)
 * add some analysis of fiber type.  Casey just added this to the API, and I haven't had time to do much with it. I decided to leave it out for now because it would require doing a whole extra set of API calls to grab yarn objects, and I didn't want to slow the calculations down or hammer the database any more than I already am.
-* add some charts based on stash - probably based around yarn weight and colors.
 * I think it would be really cool to take these metrics to make recommendations for people who either don't want to deal with chart reading or don't have enough knitting/crochet knowledge to use the data themselves. I'm picturing an app that someone who loves a Raveler could use to get guidelines for gift shopping.  Rather than trying to sift through the charts, the app could recommend that a Raveler particularly likes blue sport-weight, or that if someone wanted to buy the Raveler yarn to make a hat they'd do well to consider brown worsted merinos.  The user could go to a yarn shop armed with this information to make more educated gift buying decisions.   (For features like this, it would be useful for non-Ravelry users to be able to see agregated data in this style without needing an authentication.)
 * Taken to much further extremes, the app could likely be made smart enough to take data from the user's prior projects, stash, and queue to recommend patterns and general yarn attributes for full-kit gifting recommendations.  Happy holidays!
