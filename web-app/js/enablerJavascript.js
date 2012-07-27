@@ -5,88 +5,146 @@ dojo.require("dijit.form.CheckBox");
 dojo.require("dijit.form.Select");
 
 var chartData;
+var stashData;
 
-function sendForm() {
-    var form = dojo.byId("userNameForm");
+var orderedYarnWeightLabels = [
+    'Thread',
+    'Cobweb',
+    'Lace',
+    'Light Fingering',
+    'Fingering',
+    'Sport',
+    'DK',
+    'Worsted',
+    'Aran / Worsted',
+    'Aran',
+    'Bulky',
+    'Super Bulky',
+    'No Yarn Specified'
+];
 
-    dojo.connect(form, "onsubmit", function(event) {
-        dojo.stopEvent(event);
-        dojo.byId("yarnWeightDiv").innerHTML = "";
-        dojo.byId("projectTypeDiv").innerHTML = "";
+dojo.ready(function(){
+    // Create a button programmatically:
+    var button = new dijit.form.Button({
+        label: "Enable!",
+        onClick: function(){
+            var userName = dojo.byId('userName').value;
+            getProjectData(userName);
+            getStashData(userName);
+        }
+    }, "getDataButton");
 
-        var xhrArgs = {
-            form: dojo.byId("userNameForm"),
-            handleAs: "json",
-            load: function(data) {
-                if(!data['error']){
-                    chartData = data;
-                    if(!chartData['projectStats']['message']){
-                        projectTypePieChart(chartData['projectStats']['patternTypePercentages']);
+});
 
-                        createDynamicProjectCharts('All');
-                    }
-                    else{
-                        dojo.byId('response').innerHTML = chartData['projectStats']['message'];
-                    }
+function getProjectData(userName) {
+
+    dojo.byId("yarnWeightDiv").innerHTML = "";
+    dojo.byId("projectTypeDiv").innerHTML = "";
+
+    var xhrArgs = {
+        url: "projectData/getProjectStats",
+        content:{userName:userName},
+        handleAs: "json",
+        load: function(data) {
+            if(!data['error']){
+                chartData = data;
+                if(!chartData['message']){
+                    projectTypePieChart(chartData['patternTypePercentages']);
+
+                    createDynamicProjectCharts('All');
+                }
+                else{
+                    dojo.byId('projectResponse').innerHTML = chartData['message'];
+                }
+            }
+            else {
+                if(data['error']['errorCode']=='authenticationError'){
+                    window.location.href = data['error']['errorURL'];
                 }
                 else {
-                    if(data['error']['errorCode']=='authenticationError'){
-                        window.location.href = data['error']['errorURL'];
-                    }
-                    else {
-                        dojo.byId('response').innerHTML = 'Sorry, an error occurred.\n' + data['error']['errorCode'];
-                    }
+                    dojo.byId('projectResponse').innerHTML = 'Sorry, an error occurred.\n' + data['error']['errorCode'];
                 }
-            },
-            error: function(error) {
-                dojo.byId("response").innerHTML = "Error:" + error;
             }
+        },
+        error: function(error) {
+            dojo.byId("projectResponse").innerHTML = "Error:" + error;
         }
-        dojo.byId("response").innerHTML = "Calculating project stats..."
-        var deferred = dojo.xhrPost(xhrArgs);
-    });
+    }
+    dojo.byId("projectResponse").innerHTML = "Calculating project stats..."
+    var deferred = dojo.xhrPost(xhrArgs);
 }
 
-dojo.addOnLoad(sendForm);
+function getStashData(userName) {
+
+    dojo.byId("stashColumnChartDiv").innerHTML = "";
+
+    var xhrArgs = {
+        url: "projectData/getStashStats",
+        content:{userName:userName},
+        handleAs: "json",
+        load: function(data) {
+            if(!data['error']){
+                stashData = data;
+                if(!stashData['message']){
+                    genericPieChart(stashData['yarnColorPercent'],stashColorDiv,'Stash By Color',"");
+                    createDynamicStashCharts();
+                }
+                else{
+                    dojo.byId('stashResponse').innerHTML = chartData['message'];
+                }
+            }
+            else {
+                if(data['error']['errorCode']=='authenticationError'){
+                    window.location.href = data['error']['errorURL'];
+                }
+                else {
+                    dojo.byId('stashResponse').innerHTML = 'Sorry, an error occurred.\n' + data['error']['errorCode'];
+                }
+            }
+        },
+        error: function(error) {
+            dojo.byId("stashResponse").innerHTML = "Error:" + error;
+        }
+    }
+    dojo.byId("stashResponse").innerHTML = "Calculating stash stats..."
+    var deferred = dojo.xhrPost(xhrArgs);
+}
 
 function createDynamicProjectCharts(projectType) {
-    var yarnWeightData = chartData['projectStats']['yarnWeight'][projectType];
-    var orderedYarnWeightLabels = [
-        'Thread',
-        'Cobweb',
-        'Lace',
-        'Light Fingering',
-        'Fingering',
-        'Sport',
-        'DK',
-        'Worsted',
-        'Aran / Worsted',
-        'Aran',
-        'Bulky',
-        'Super Bulky',
-        'No Yarn Specified'
-    ];
+    var yarnWeightData = chartData['yarnWeight'][projectType];
 
     var orderedYarnWeightCounts = [];
     for (var weightIndex in orderedYarnWeightLabels) {
         orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
     }
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, projectType);
-    dojo.byId("response").innerHTML = "";
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightDiv','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight');
+    dojo.byId("projectResponse").innerHTML = "";
 }
 
-function yarnWeightChart(yarnWeightLabels,yarnWeightData, projectType){
+function createDynamicStashCharts() {
+    var yarnWeightData = stashData['yarnWeight'];
+
+    var orderedYarnWeightCounts = [];
+    for (var weightIndex in orderedYarnWeightLabels) {
+        orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
+    }
+
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight');
+    dojo.byId("stashResponse").innerHTML = "";
+}
+
+function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxisLabel, xAxisLabel){
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
-                renderTo: 'yarnWeightDiv',
+                renderTo: renderTo,
                 type: 'column',
                 margin: [ 50, 50, 100, 80]
             },
             title: {
-                text: 'Projects by Yarn Weight for ' + projectType + ' Projects'
+                text: title
             },
             xAxis: {
                 categories: yarnWeightLabels,
@@ -102,7 +160,7 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData, projectType){
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Projects'
+                    text: yAxisLabel
                 }
             },
             legend: {
@@ -115,7 +173,7 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData, projectType){
                 }
             },
             series: [{
-                name: 'Yarn Weight',
+                name: xAxisLabel,
                 data: yarnWeightData,
                 dataLabels: {
                     enabled: true,
@@ -181,10 +239,53 @@ function projectTypePieChart(patternTypeData){
             },
             series: [{
                 type: 'pie',
-                name: 'Browser share',
+                name: 'Project Pattern Types',
                 data: patternTypeData
             }]
         });
     });
+}
 
+function genericPieChart(data, renderTo, title, subtitle){
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: renderTo,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: title
+            },
+            subtitle: {
+                text: subtitle
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*10)/10 +' %';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage*10)/10 +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: title,
+                data: data
+            }]
+        });
+    });
 }

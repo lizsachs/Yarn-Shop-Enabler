@@ -21,20 +21,20 @@ class CalculateService {
     ];
 
     def initializeYarnWeightCounts = [
-            'Thread':[count:0, yardage:initializeYardageMap.clone()],
-            'Cobweb':[count:0, yardage:initializeYardageMap.clone()],
-            'Lace':[count:0, yardage:initializeYardageMap.clone()],
-            'Light Fingering':[count:0, yardage:initializeYardageMap.clone()],
-            'Fingering':[count:0, yardage:initializeYardageMap.clone()],
-            'Sport':[count:0, yardage:initializeYardageMap.clone()],
-            'DK':[count:0, yardage:initializeYardageMap.clone()],
-            'Worsted':[count:0, yardage:initializeYardageMap.clone()],
-            'Aran / Worsted':[count:0, yardage:initializeYardageMap.clone()],
-            'Aran':[count:0, yardage:initializeYardageMap.clone()],
-            'Bulky':[count:0, yardage:initializeYardageMap.clone()],
-            'Super Bulky':[count:0, yardage:initializeYardageMap.clone()],
-            'Other':[count:0, yardage:initializeYardageMap.clone()],
-            'No Yarn Specified':[count:0, yardage:initializeYardageMap.clone()]];
+            'Thread':0,
+            'Cobweb':0,
+            'Lace':0,
+            'Light Fingering':0,
+            'Fingering':0,
+            'Sport':0,
+            'DK':0,
+            'Worsted':0,
+            'Aran / Worsted':0,
+            'Aran':0,
+            'Bulky':0,
+            'Super Bulky':0,
+            'Other':0,
+            'No Yarn Specified':0];
 
     // I put all of this in one service call to minimize calls to the database rather than having separate calculations for each type of data, only need to iterate through projects once.
     def countProjectDetails(userName, allProjects, token) {
@@ -45,7 +45,6 @@ class CalculateService {
 
         allProjects.each{
             def project = httpService.getProjectDetails(userName,it.id, token);
-            def yarnYardage = project.project.packs.total_yards;
             def patternType = 'No Pattern Type Specified';
             totalPatternTypes++;
             if(it.pattern_id){
@@ -81,21 +80,43 @@ class CalculateService {
             }
         }
 
-        def patternTypePercentages = calculatePatternTypePercent(patternTypeCount,totalPatternTypes);
+        def patternTypePercentages = calculatePercentages(patternTypeCount,totalPatternTypes);
 
         return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages,'patternTypes':patternTypeCount.keySet()];
     }
 
-    def calculatePatternTypePercent(patternTypeCount,totalPatternTypes){
-        def patternTypePercentages = []
-        patternTypeCount.each{
-            patternTypePercentages.add([it.key,it.value/totalPatternTypes*100]);
+    def calculatePercentages(counts,total){
+        def percentages = []
+        counts.each{
+            percentages.add([it.key,it.value/total*100]);
         }
-        patternTypePercentages;
+        percentages;
     }
 
     def countStashDetails(userName, stash, token){
+        def yarnWeightCount = initializeYarnWeightCounts.clone();
+        def yarnColorCount = ['No Color Specified':0];
+        def totalStash = 0;
 
+        stash.stash.each{
+            def yarn = it.yarn;
+            totalStash++;
+
+            //yarnWeightCount = yarnWeightCount.get(yarn.yarn_weight.name,0);
+            if(yarn && yarn.yarn_weight){
+                yarnWeightCount[yarn.yarn_weight.name]++;
+            }
+
+            if(it.color_family_name){
+                yarnColorCount[it.color_family_name] = yarnColorCount.get(it.color_family_name,0);
+                yarnColorCount[it.color_family_name]++;
+            }
+            else {
+                yarnColorCount['No Color Specified']++;
+            }
+        }
+        def stashColorPercentages = calculatePercentages(yarnColorCount,totalStash);
+        return ['yarnWeight':yarnWeightCount, 'yarnColorPercent':stashColorPercentages]
     }
 
 

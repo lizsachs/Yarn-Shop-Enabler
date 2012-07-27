@@ -16,21 +16,26 @@
 <body class="Nihilo">
 <h1>Yarn Store Enabler</h1>
 <blockquote>
-        Which Raveler would you like to enable? (This may take a few moments for active fiber enthusiasts!)
-    <form action="ProjectData/getProjectStats" id="userNameForm">
-        <input type="text" dojoType="dijit.form.TextBox" name="userName" value="blacktabi">
-    </input>
-        <button type="submit" dojoType="dijit.form.Button" id="submitButton">
-            Get Project Data
-        </button>
-    </form>
+    Which Raveler would you like to enable? (This may take a few moments for active fiber enthusiasts!)
+    <input type="text" dojoType="dijit.form.TextBox" name="userName" id="userName" value="blacktabi">
+</input>
+    <div id="getDataButton"></div>
 </blockquote>
 <br>
-<div id="response"></div>
+
 <table>
     <tr>
-<td><div id="projectTypeDiv" style="width: 50%"></div></td>
-<td><div id="yarnWeightDiv" style="width: 50%"></div></td>
+        <div id="projectResponse"></div>
+        <td><div id="projectTypeDiv" style="width:45%"></div></td>
+        <td><div id="yarnWeightDiv" style="width:45%"></div></td>
+    </tr>
+</table>
+<div id="stashResponse"></div>
+<td><div id="stashColumnChartDiv" style="width:100%"></div></td>
+<table>
+    <tr>
+        <td><div id="stashColorDiv" style="width:45%"></div></td>
+        <td><div id="stashFiberDiv" style="width:45%"></div></td>
     </tr>
 </table>
 

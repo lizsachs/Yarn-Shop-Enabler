@@ -37,7 +37,7 @@ class ProjectDataController {
                 projectStats = ['message':"This user has no project data."];
             }
 
-            returnValues = ['projectStats':projectStats];
+            returnValues = projectStats;
         }
         catch(HttpService.AuthenticationException e){
             flash.message = "Your authentication has timed out. Please log in again."
@@ -63,7 +63,7 @@ class ProjectDataController {
                 stashStats = ['message':"This user has no stash data."];
             }
 
-            returnValues = ['stashStats':stashStats];
+            returnValues = stashStats;
         }
         catch(HttpService.AuthenticationException e){
             flash.message = "Your authentication has timed out. Please log in again."
