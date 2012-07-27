@@ -21,23 +21,31 @@
 </input>
     <div id="getDataButton"></div>
 </blockquote>
-<br>
 
-<table>
-    <tr>
-        <div id="projectResponse"></div>
-        <td><div id="projectTypeDiv" style="width:45%"></div></td>
-        <td><div id="yarnWeightDiv" style="width:45%"></div></td>
-    </tr>
-</table>
-<div id="stashResponse"></div>
-<td><div id="stashColumnChartDiv" style="width:100%"></div></td>
+
+<div align="center">
+    <span id="projectResponse"></span>
+    <div id="projectStandby" style="width: 800px; height:100px; background-color: white; "></div>
+
+    <span id="projectTypeSpan" style="width:45%; float:left"></span>
+    <span id="yarnWeightSpan" style="width:45%;"></span>
+</div>
+
+
+
+<div align="center">
+<span id="stashResponse"></span>
+<div id="stashStandby" style="width: 800px; height:100px; background-color: white; "></div>
+
+<span id="stashColumnChartDiv" style="width:100%"></span>
+</div>
 <table>
     <tr>
         <td><div id="stashColorDiv" style="width:45%"></div></td>
         <td><div id="stashFiberDiv" style="width:45%"></div></td>
     </tr>
 </table>
+</div>
 
 </body>
 </html>

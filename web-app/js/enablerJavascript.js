@@ -3,6 +3,7 @@ dojo.require("dijit.form.Button");
 dojo.require("dijit.form.TextBox");
 dojo.require("dijit.form.CheckBox");
 dojo.require("dijit.form.Select");
+dojo.require("dojox.widget.Standby");
 
 var chartData;
 var stashData;
@@ -24,6 +25,7 @@ var orderedYarnWeightLabels = [
 ];
 
 dojo.ready(function(){
+
     // Create a button programmatically:
     var button = new dijit.form.Button({
         label: "Enable!",
@@ -37,17 +39,25 @@ dojo.ready(function(){
 });
 
 function getProjectData(userName) {
-
-    dojo.byId("yarnWeightDiv").innerHTML = "";
-    dojo.byId("projectTypeDiv").innerHTML = "";
+    dojo.byId("projectTypeSpan").innerHTML = "";
+    dojo.style("projectStandby",{"height":"100px"});
+    var projectStandby = new dojox.widget.Standby({
+        target: "projectStandby"
+    });
+    document.body.appendChild(projectStandby.domNode);
+    projectStandby.startup();
+    projectStandby.show();
 
     var xhrArgs = {
         url: "projectData/getProjectStats",
         content:{userName:userName},
         handleAs: "json",
-        load: function(data) {
+        load: dojo.hitch(this,function(data) {
+            projectStandby.hide();
+            dojo.style("projectStandby",{"height":"0px"}); // even with the .hide(), this is leaving whitespace at the top of the page, so we'll set the height to 0
             if(!data['error']){
                 chartData = data;
+
                 if(!chartData['message']){
                     projectTypePieChart(chartData['patternTypePercentages']);
 
@@ -65,7 +75,7 @@ function getProjectData(userName) {
                     dojo.byId('projectResponse').innerHTML = 'Sorry, an error occurred.\n' + data['error']['errorCode'];
                 }
             }
-        },
+        }),
         error: function(error) {
             dojo.byId("projectResponse").innerHTML = "Error:" + error;
         }
@@ -75,6 +85,14 @@ function getProjectData(userName) {
 }
 
 function getStashData(userName) {
+    dojo.byId("yarnWeightSpan").innerHTML = "";
+    dojo.style("stashStandby",{"height":"100px"});
+    var stashStandby = new dojox.widget.Standby({
+        target: "stashStandby"
+    });
+    document.body.appendChild(stashStandby.domNode);
+    stashStandby.startup();
+    stashStandby.show();
 
     dojo.byId("stashColumnChartDiv").innerHTML = "";
 
@@ -83,10 +101,13 @@ function getStashData(userName) {
         content:{userName:userName},
         handleAs: "json",
         load: function(data) {
+            stashStandby.hide();
+            dojo.style("stashStandby",{"height":"0px"}); // even with the .hide(), this is leaving whitespace at the top of the page, so we'll set the height to 0
+
             if(!data['error']){
                 stashData = data;
                 if(!stashData['message']){
-                    genericPieChart(stashData['yarnColorPercent'],stashColorDiv,'Stash By Color',"");
+                    //genericPieChart(stashData['yarnColorPercent'],stashColorDiv,'Stash By Color',"");
                     createDynamicStashCharts();
                 }
                 else{
@@ -118,7 +139,7 @@ function createDynamicProjectCharts(projectType) {
         orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
     }
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightDiv','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight');
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightSpan','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight');
     dojo.byId("projectResponse").innerHTML = "";
 }
 
@@ -201,7 +222,7 @@ function projectTypePieChart(patternTypeData){
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
-                renderTo: 'projectTypeDiv',
+                renderTo: 'projectTypeSpan',
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
