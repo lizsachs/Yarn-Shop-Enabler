@@ -77,6 +77,7 @@ function getProjectData(userName) {
             }
         }),
         error: function(error) {
+            projectStandby.hide();
             dojo.byId("projectResponse").innerHTML = "Error:" + error;
         }
     }
@@ -86,6 +87,7 @@ function getProjectData(userName) {
 
 function getStashData(userName) {
     dojo.byId("yarnWeightSpan").innerHTML = "";
+    dojo.byId("stashColorDiv").innerHTML = "";
     dojo.style("stashStandby",{"height":"100px"});
     var stashStandby = new dojox.widget.Standby({
         target: "stashStandby"
@@ -107,7 +109,6 @@ function getStashData(userName) {
             if(!data['error']){
                 stashData = data;
                 if(!stashData['message']){
-                    //genericPieChart(stashData['yarnColorPercent'],stashColorDiv,'Stash By Color',"");
                     createDynamicStashCharts();
                 }
                 else{
@@ -124,6 +125,7 @@ function getStashData(userName) {
             }
         },
         error: function(error) {
+            stashStandby.hide();
             dojo.byId("stashResponse").innerHTML = "Error:" + error;
         }
     }
@@ -145,11 +147,20 @@ function createDynamicProjectCharts(projectType) {
 
 function createDynamicStashCharts() {
     var yarnWeightData = stashData['yarnWeight'];
+    var colorData = stashData['yarnColors'];
 
     var orderedYarnWeightCounts = [];
     for (var weightIndex in orderedYarnWeightLabels) {
         orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
     }
+
+    var orderedColorPercentages = [];
+    var orderedColorsHex = [];
+    for (var colorIndex in colorData){
+        orderedColorPercentages.push([colorIndex,colorData[colorIndex]['percentage']])
+        orderedColorsHex.push(colorData[colorIndex]['color'])
+    }
+    genericPieChart(orderedColorPercentages,stashColorDiv,'Stash By Color',"",orderedColorsHex);
 
     yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight');
     dojo.byId("stashResponse").innerHTML = "";
@@ -267,7 +278,7 @@ function projectTypePieChart(patternTypeData){
     });
 }
 
-function genericPieChart(data, renderTo, title, subtitle){
+function genericPieChart(data, renderTo, title, subtitle, hexColors){
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
@@ -302,6 +313,7 @@ function genericPieChart(data, renderTo, title, subtitle){
                     }
                 }
             },
+            colors: hexColors,
             series: [{
                 type: 'pie',
                 name: title,

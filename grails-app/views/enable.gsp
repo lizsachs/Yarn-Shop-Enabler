@@ -24,6 +24,7 @@
 
 
 <div align="center">
+    Project Data
     <span id="projectResponse"></span>
     <div id="projectStandby" style="width: 800px; height:100px; background-color: white; "></div>
 
@@ -31,20 +32,16 @@
     <span id="yarnWeightSpan" style="width:45%;"></span>
 </div>
 
-
+<hr>
 
 <div align="center">
+    Stash Data
 <span id="stashResponse"></span>
 <div id="stashStandby" style="width: 800px; height:100px; background-color: white; "></div>
 
 <span id="stashColumnChartDiv" style="width:100%"></span>
-</div>
-<table>
-    <tr>
-        <td><div id="stashColorDiv" style="width:45%"></div></td>
-        <td><div id="stashFiberDiv" style="width:45%"></div></td>
-    </tr>
-</table>
+    <div id="stashColorDiv" style="width:45%; float:left"></div>
+    <div id="stashFiberDiv" style="width:45%"></div>
 </div>
 
 </body>

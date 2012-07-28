@@ -95,28 +95,58 @@ class CalculateService {
 
     def countStashDetails(userName, stash, token){
         def yarnWeightCount = initializeYarnWeightCounts.clone();
-        def yarnColorCount = ['No Color Specified':0];
+        // yarnColorCount isn't global because clone copies the references for the values in the more complex key-value pairs,
+        // which messes up the counts.  Sticking it here because I haven't bothered to write a deep-clone method yet
+        def yarnColorCount =  [
+                'Black':['count':0,'color':'#000000'],
+                'Blue':['count':0,'color':'#92A8CD'],
+                'Blue-green':['count':0,'color':'#3D96AE'],
+                'Blue-purple':['count':0,'color':'#666699'],
+                'Brown':['count':0,'color':'#A47D7C'],
+                'Gray':['count':0,'color':'#CCCCCC'],
+                'Green':['count':0,'color':'#89A54E'],
+                'Natural/Undyed':['count':0,'color':'#FFFFE0'],
+                'Orange':['count':0,'color':'#DB843D'],
+                'Pink':['count':0,'color':'#FF9EDF'],
+                'Purple':['count':0,'color':'#80699B'],
+                'Red':['count':0,'color':'#AA4643'],
+                'Red-orange':['count':0,'color':'#FF5C33'],
+                'Red-purple':['count':0,'color':'#A3297A'],
+                'White':['count':0,'color':'#FFFFFF'],
+                'Yellow':['count':0,'color':'#FFD119'],
+                'Yellow-green':['count':0,'color':'#B5CA92'],
+                'Yellow-orange':['count':0,'color':'#FFCC00'],
+                'No Color Specified':['count':0,'color':'#E6E6E6']
+        ];
+
         def totalStash = 0;
 
         stash.stash.each{
-            def yarn = it.yarn;
-            totalStash++;
+            if(it['stash_status']['id'] == 1){
+                def yarn = it.yarn;
+                totalStash++;
 
-            //yarnWeightCount = yarnWeightCount.get(yarn.yarn_weight.name,0);
-            if(yarn && yarn.yarn_weight){
-                yarnWeightCount[yarn.yarn_weight.name]++;
-            }
+                if(yarn && yarn.yarn_weight){
+                    yarnWeightCount[yarn.yarn_weight.name]++;
+                }
 
-            if(it.color_family_name){
-                yarnColorCount[it.color_family_name] = yarnColorCount.get(it.color_family_name,0);
-                yarnColorCount[it.color_family_name]++;
-            }
-            else {
-                yarnColorCount['No Color Specified']++;
+                if(it.color_family_name && yarnColorCount[it.color_family_name]){
+                    yarnColorCount[it.color_family_name]['count']++;
+                }
+                else {
+                    if(it.color_family_name){
+                        println(it.color_family_name)
+                    }
+                    yarnColorCount['No Color Specified']['count']++;
+                }
             }
         }
-        def stashColorPercentages = calculatePercentages(yarnColorCount,totalStash);
-        return ['yarnWeight':yarnWeightCount, 'yarnColorPercent':stashColorPercentages]
+
+        //not using the generic calculate percentages method because I want to store the results along with color values
+        yarnColorCount.each{
+            it.value['percentage'] = (it.value['count']/totalStash)*100;
+        }
+        return ['yarnWeight':yarnWeightCount, 'yarnColors':yarnColorCount]
     }
 
 
