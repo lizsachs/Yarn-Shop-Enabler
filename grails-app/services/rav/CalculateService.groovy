@@ -97,6 +97,7 @@ class CalculateService {
         def yarnWeightCount = initializeYarnWeightCounts.clone();
         // yarnColorCount isn't global because clone copies the references for the values in the more complex key-value pairs,
         // which messes up the counts.  Sticking it here because I haven't bothered to write a deep-clone method yet
+        // storing hex values for each color here so that I can keep them paired with the right category for display purposes
         def yarnColorCount =  [
                 'Black':['count':0,'color':'#000000'],
                 'Blue':['count':0,'color':'#92A8CD'],

@@ -39,8 +39,8 @@
 <span id="stashResponse"></span>
 <div id="stashStandby" style="width: 800px; height:100px; background-color: white; "></div>
 
-<span id="stashColumnChartDiv" style="width:100%"></span>
-    <div id="stashColorDiv" style="width:45%; float:left"></div>
+<span id="stashColumnChartDiv" style="width:45%; float:left"></span>
+    <div id="stashColorDiv" style="width:45%; "></div>
     <div id="stashFiberDiv" style="width:45%"></div>
 </div>
 
