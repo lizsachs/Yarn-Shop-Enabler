@@ -13,6 +13,7 @@ dojo.require("dijit.layout.ContentPane");
 
 var chartData;
 var stashData;
+var userName;
 
 var orderedYarnWeightLabels = [
     'Thread',
@@ -36,15 +37,15 @@ dojo.ready(function(){
     var button = new dijit.form.Button({
         label: "Enable!",
         onClick: function(){
-            var userName = dojo.byId('userName').value;
-            getProjectData(userName);
-            getStashData(userName);
+            userName = dojo.byId('userName').value;
+            getProjectData();
+            getStashData();
         }
     }, "getDataButton");
 
 });
 
-function getProjectData(userName) {
+function getProjectData() {
     dojo.byId("projectTypeSpan").innerHTML = "";
     dojo.style("projectStandby",{"height":"100px"});
     var projectStandby = new dojox.widget.Standby({
@@ -91,7 +92,7 @@ function getProjectData(userName) {
     var deferred = dojo.xhrPost(xhrArgs);
 }
 
-function getStashData(userName) {
+function getStashData() {
     dojo.byId("yarnWeightSpan").innerHTML = "";
     dojo.byId("stashColorDiv").innerHTML = "";
     dojo.style("stashStandby",{"height":"100px"});
@@ -220,13 +221,14 @@ function showDetailsDialog(projectType,yarnWeight){
             id: 'grid',
             store: store,
             structure: layout,
-            autoWidth: true
+            onRowClick: function(e){
+                window.open('http://www.ravelry.com/projects/' + userName + "/" + grid._getItemAttr(e.rowIndex,'permalink'))
+            }
         },
         'grid');
 
     /*append the new grid to the div*/
     dojo.byId("dataGridDiv").appendChild(grid.domNode);
-
 
     /*Call startup() to render the grid*/
     grid.startup();
