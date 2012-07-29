@@ -17,8 +17,13 @@ class HttpService {
             jsonResponse = new JsonSlurper().parseText(response.getBody())
         }
         else{
-            if(response.headers.status == 401){
+            if(response.headers.Status == '401'){
                 throw new AuthenticationException();
+            }
+            else if(response.headers.Status == '500'){
+                //do nothing if status is 500.  Ravely throws a 500 error occasionally for specific projects, but we still want to calculate the other project data without erroring out
+                println("500 Error: " + response.headers);
+                jsonResponse = null;
             }
             else{
                 throw new Exception();
