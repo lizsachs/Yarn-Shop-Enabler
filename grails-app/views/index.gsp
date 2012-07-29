@@ -1,94 +1,32 @@
 <!doctype html>
 <html>
-	<head>
-		<title>Welcome to the Local Yarn Store Enabler</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
+<head>
+    <title>Yarn Store Enabler</title>
+    <style type="text/css">
+        /*Grid need a explicit width/height by default*/
+    #grid {
+        width: 43em;
+        height: 75px;
+    }
+    .dojoxGridCell {font-size: 12px;}
 
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
-
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-            
-			#status li {
-				line-height: 1.3;
-			}
-
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
-
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
-
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
-
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
-
-			#controller-list ul {
-				list-style-position: inside;
-			}
-
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
-
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
-
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div id="page-body" role="main">
-            <h3>Local Yarn Store Enabler</h3>
-            <br>
-            <div class='info_message' style="color:red">
-                ${flash.message}
-            </div>
-            Please connect with Ravelry to begin!
-            <oauth:connect provider="ravelry">Connect to Ravelry</oauth:connect>
-
+    </style>
+    <dojo:header theme="claro" />
+</head>
+<body class="claro">
+<div id="page-body" role="main">
+    <div align="center"><h1>Local Yarn Store Enabler</h1>
+    <blockquote>
+        <div class='info_message' style="color:red">
+            ${flash.message}
         </div>
-	</body>
+        <p>Please connect with Ravelry to begin!</p>
+        <oauth:connect provider="ravelry"><button data-dojo-type="dijit.form.Button" type="button">Connect to Ravelry
+
+        <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+            </script>
+        </button></oauth:connect>
+    </blockquote>
+    </div>
+</body>
 </html>

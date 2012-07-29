@@ -177,7 +177,7 @@ function createDynamicStashCharts() {
 
 function formatImage(src) {
     if(!src){
-        return null;
+        return "no photo";
     }
     return '<img src="' + src + '" style="width: 75px; height: 75px;">'
 }
@@ -235,9 +235,11 @@ function showDetailsDialog(dataType,projectType,qualifier){
             store: store,
             structure: layout,
             autoWidth:true,
+            rowHeight:75,
+            autoheight:6,
             onRowClick: function(e){
                 var urlString = null;
-                if(dataType.contains("stash")){
+                if(dataType.indexOf('stash') !== -1){
                     urlString = 'http://www.ravelry.com/people/' + userName + "/stash/" + grid._getItemAttr(e.rowIndex,'permalink')
                 }
                 else if(dataType == "project"){
