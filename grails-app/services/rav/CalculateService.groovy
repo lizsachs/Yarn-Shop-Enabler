@@ -21,25 +21,26 @@ class CalculateService {
     ];
 
     def initializeYarnWeightCounts = [
-            'Thread':0,
-            'Cobweb':0,
-            'Lace':0,
-            'Light Fingering':0,
-            'Fingering':0,
-            'Sport':0,
-            'DK':0,
-            'Worsted':0,
-            'Aran / Worsted':0,
-            'Aran':0,
-            'Bulky':0,
-            'Super Bulky':0,
-            'Other':0,
-            'No Yarn Specified':0];
+            'Thread':null,
+            'Cobweb':null,
+            'Lace':null,
+            'Light Fingering':null,
+            'Fingering':null,
+            'Sport':null,
+            'DK':null,
+            'Worsted':null,
+            'Aran / Worsted':null,
+            'Aran':null,
+            'Bulky':null,
+            'Super Bulky':null,
+            'Other':null,
+            'No Yarn Specified':null];
 
     // I put all of this in one service call to minimize calls to the database rather than having separate calculations for each type of data, only need to iterate through projects once.
     def countProjectDetails(userName, allProjects, token) {
 
-        def yarnWeightCount = ['All':initializeYarnWeightCounts.clone()];
+        def yarnWeightCount = ['All':initializeMapToZero(initializeYarnWeightCounts.clone())];
+        def patternMetadata = ['All':initializeMapToMetadataContainer(initializeYarnWeightCounts.clone())]
         def patternTypeCount = ['No Pattern Type Specified':0];
         def totalPatternTypes = 0;
 
@@ -60,29 +61,55 @@ class CalculateService {
             if(project != null){
                 def projectPacks = project.project.packs;
                 def uniqueYarnsPerProject = [];
-                // we only want to count each weight of yarn once per project, but if the project uses yarns of two weights we want to count both
+
+                yarnWeightCount[patternType] = yarnWeightCount.get(patternType,initializeMapToZero(initializeYarnWeightCounts.clone()));
+                patternMetadata[patternType] = patternMetadata.get(patternType,initializeMapToMetadataContainer(initializeYarnWeightCounts.clone()))
+
+                def projectMetadata = ['name': project.project.name, 'permalink': project.project.permalink, 'photoUrl': null];
+
+                project.project.photos.each {
+                    if (it.sort_order == 1){
+                        projectMetadata['photoUrl'] = it.square_url;
+                    }
+                }
+
+                // if more than one yarn weight is used per project, we'll just increment the data for each yarn weight since the project basically belongs to both categories
                 projectPacks.each{
                     if(it.yarn_weight && !uniqueYarnsPerProject.contains(it.yarn_weight.name)){
                         uniqueYarnsPerProject.add(it.yarn_weight.name);
                     }
                 }
 
-                yarnWeightCount[patternType] = yarnWeightCount.get(patternType,initializeYarnWeightCounts.clone());
-
                 uniqueYarnsPerProject.each{
                     yarnWeightCount[patternType][it]++;
                     yarnWeightCount['All'][it]++;
+
+                    patternMetadata[patternType][it].add(projectMetadata);
+                    patternMetadata['All'][it].add(projectMetadata);
                 }
                 if(uniqueYarnsPerProject.size() == 0){
                     yarnWeightCount['All'][noYarnSpecified]++;
                     yarnWeightCount[patternType][noYarnSpecified]++;
+
+
+                    patternMetadata[patternType][noYarnSpecified].add(projectMetadata);
+                    patternMetadata['All'][noYarnSpecified].add(projectMetadata);
                 }
             }
         }
 
         def patternTypePercentages = calculatePercentages(patternTypeCount,totalPatternTypes);
 
-        return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages,'patternTypes':patternTypeCount.keySet()];
+        return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages,'patternTypes':patternTypeCount.keySet(),'patternMetadata':patternMetadata];
+    }
+
+    def initializeMapToZero (map){
+        def initializedMap = map.collectEntries{key,value -> [key,0]};
+        return initializedMap;
+    }
+
+    def initializeMapToMetadataContainer(map){
+        def initializedMap = map.collectEntries{key,value -> [key,[]]}
     }
 
     def calculatePercentages(counts,total){
@@ -94,7 +121,7 @@ class CalculateService {
     }
 
     def countStashDetails(userName, stash, token){
-        def yarnWeightCount = initializeYarnWeightCounts.clone();
+        def yarnWeightCount = initializeMapToZero(initializeYarnWeightCounts.clone());
         // yarnColorCount isn't global because clone copies the references for the values in the more complex key-value pairs,
         // which messes up the counts.  Sticking it here because I haven't bothered to write a deep-clone method yet
         // storing hex values for each color here so that I can keep them paired with the right category for display purposes

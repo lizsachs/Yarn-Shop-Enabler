@@ -4,6 +4,12 @@ dojo.require("dijit.form.TextBox");
 dojo.require("dijit.form.CheckBox");
 dojo.require("dijit.form.Select");
 dojo.require("dojox.widget.Standby");
+dojo.require("dijit.Dialog");
+dojo.require("dojox.grid.DataGrid");
+dojo.require("dojo.data.ItemFileWriteStore");
+dojo.require("dijit.layout.ContentPane");
+
+
 
 var chartData;
 var stashData;
@@ -141,7 +147,7 @@ function createDynamicProjectCharts(projectType) {
         orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
     }
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightSpan','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight');
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightSpan','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight', projectType);
     dojo.byId("projectResponse").innerHTML = "";
 }
 
@@ -157,16 +163,80 @@ function createDynamicStashCharts() {
     var orderedColorPercentages = [];
     var orderedColorsHex = [];
     for (var colorIndex in colorData){
-        orderedColorPercentages.push([colorIndex,colorData[colorIndex]['percentage']])
-        orderedColorsHex.push(colorData[colorIndex]['color'])
+        if(colorData[colorIndex]['percentage'] != 0){
+            orderedColorPercentages.push([colorIndex,colorData[colorIndex]['percentage']])
+            orderedColorsHex.push(colorData[colorIndex]['color'])
+        }
     }
     genericPieChart(orderedColorPercentages,stashColorDiv,'Stash By Color',"",orderedColorsHex);
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight');
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null);
     dojo.byId("stashResponse").innerHTML = "";
 }
 
-function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxisLabel, xAxisLabel){
+function formatImage(src) {
+    return '<img src="' + src + '" style="width: 75px; height: 75px;">'
+}
+
+function showDetailsDialog(projectType,yarnWeight){
+
+    if(dijit.byId("dataDialog")){
+        dijit.byId("dataDialog").destroyRecursive();
+    }
+
+    var dataContentPane = new dijit.layout.ContentPane({
+        content:"Click a row to view the corresponding page in Ravelry.\n<div id='dataGridDiv'></div>"
+    });
+
+    var dialog = new dijit.Dialog({
+        title: "Programmatic Dialog Creation",
+        id: "dataDialog",
+        content:dataContentPane
+    });
+
+    dialog.show();
+
+    var data = {
+        identifier: 'id',
+        items: []
+    };
+
+    var data_list = chartData['patternMetadata'][projectType][yarnWeight];
+    for(var i=0; i<data_list.length; i++){
+        data.items.push(dojo.mixin({ id: i }, data_list[i]));
+    }
+
+    var store = new dojo.data.ItemFileWriteStore({data: data});
+
+    /*set up layout*/
+    var layout = [[
+        {'name': 'Photo', 'field': 'photoUrl', 'width':'80px', formatter: formatImage},
+        {'name': 'Name', 'field': 'name', 'width': '200px'}
+    ]];
+
+    /*create a new grid:*/
+    var foo = document.createElement("div");
+    var grid = new dojox.grid.DataGrid({
+            id: 'grid',
+            store: store,
+            structure: layout,
+            autoWidth: true
+        },
+        'grid');
+
+    /*append the new grid to the div*/
+    dojo.byId("dataGridDiv").appendChild(grid.domNode);
+
+
+    /*Call startup() to render the grid*/
+    grid.startup();
+
+
+
+}
+
+
+function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxisLabel, xAxisLabel, projectType){
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
@@ -220,6 +290,13 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxis
                     style: {
                         fontSize: '13px',
                         fontFamily: 'Verdana, sans-serif'
+                    }
+                },
+                point: {
+                    events: {
+                        click: function(event) {
+                            showDetailsDialog(projectType,this.category);
+                        }
                     }
                 }
             }]
