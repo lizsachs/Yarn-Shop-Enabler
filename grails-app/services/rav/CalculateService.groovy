@@ -6,6 +6,7 @@ class CalculateService {
 
     def noYarnSpecified = 'No Yarn Specified';
 
+
     def initializeYardageMap = [
             ['0-150':['count':0,'min':0,'max':150]],
             ['150-300':['count':0,'min':150,'max':300]],
@@ -36,6 +37,28 @@ class CalculateService {
             'Other':null,
             'No Yarn Specified':null];
 
+    def initializeColorMap = [
+            'Black':null,
+            'Blue':null,
+            'Blue-green':null,
+            'Blue-purple':null,
+            'Brown':null,
+            'Gray':null,
+            'Green':null,
+            'Natural/Undyed':null,
+            'Orange':null,
+            'Pink':null,
+            'Purple':null,
+            'Red':null,
+            'Red-orange':null,
+            'Red-purple':null,
+            'White':null,
+            'Yellow':null,
+            'Yellow-green':null,
+            'Yellow-orange':null,
+            'No Color Specified':null
+    ]
+
     // I put all of this in one service call to minimize calls to the database rather than having separate calculations for each type of data, only need to iterate through projects once.
     def countProjectDetails(userName, allProjects, token) {
 
@@ -65,13 +88,13 @@ class CalculateService {
                 yarnWeightCount[patternType] = yarnWeightCount.get(patternType,initializeMapToZero(initializeYarnWeightCounts.clone()));
                 patternMetadata[patternType] = patternMetadata.get(patternType,initializeMapToMetadataContainer(initializeYarnWeightCounts.clone()))
 
-                def projectMetadata = ['name': project.project.name, 'permalink': project.project.permalink, 'photoUrl': null];
-
+                def photoUrl = null;
                 project.project.photos.each {
                     if (it.sort_order == 1){
-                        projectMetadata['photoUrl'] = it.square_url;
+                        photoUrl = it.square_url;
                     }
                 }
+                def projectMetadata = newObjectMetadata(project.project.name,project.project.permalink,photoUrl)
 
                 // if more than one yarn weight is used per project, we'll just increment the data for each yarn weight since the project basically belongs to both categories
                 projectPacks.each{
@@ -103,6 +126,14 @@ class CalculateService {
         return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages,'patternTypes':patternTypeCount.keySet(),'patternMetadata':patternMetadata];
     }
 
+    def newObjectMetadata(name,permalink,photoUrl){
+        def objectMetadata = ['name': null, 'permalink': null, 'photoUrl': null];
+        objectMetadata['name'] = name;
+        objectMetadata['permalink'] = permalink;
+        objectMetadata['photoUrl'] = photoUrl;
+        return objectMetadata;
+    }
+
     def initializeMapToZero (map){
         def initializedMap = map.collectEntries{key,value -> [key,0]};
         return initializedMap;
@@ -110,6 +141,34 @@ class CalculateService {
 
     def initializeMapToMetadataContainer(map){
         def initializedMap = map.collectEntries{key,value -> [key,[]]}
+        return initializedMap;
+    }
+
+    def initializeYarnColorCounts(map){
+
+        def initializedMap = map.collectEntries{key,value -> [key,['count':0,'color':null]]}
+
+        initializedMap['Black']['color'] = '#000000';
+        initializedMap['Blue']['color'] ='#92A8CD';
+        initializedMap['Blue-green']['color'] = '#3D96AE';
+        initializedMap['Blue-purple']['color'] = '#666699';
+        initializedMap['Brown']['color'] = '#A47D7C';
+        initializedMap['Gray']['color'] = '#CCCCCC';
+        initializedMap['Green']['color'] = '#89A54E';
+        initializedMap['Natural/Undyed']['color'] = '#FFFFE0';
+        initializedMap['Orange']['color'] = '#DB843D';
+        initializedMap['Pink']['color'] = '#FF9EDF';
+        initializedMap['Purple']['color'] = '#80699B';
+        initializedMap['Red']['color'] = '#AA4643';
+        initializedMap['Red-orange']['color'] = '#FF5C33';
+        initializedMap['Red-purple']['color'] = '#A3297A';
+        initializedMap['White']['color'] = '#FFFFFF';
+        initializedMap['Yellow']['color'] = '#FFD119';
+        initializedMap['Yellow-green']['color'] = '#B5CA92';
+        initializedMap['Yellow-orange']['color'] = '#FFCC00';
+        initializedMap['No Color Specified']['color'] = '#E6E6E6';
+
+        return initializedMap;
     }
 
     def calculatePercentages(counts,total){
@@ -122,30 +181,10 @@ class CalculateService {
 
     def countStashDetails(userName, stash, token){
         def yarnWeightCount = initializeMapToZero(initializeYarnWeightCounts.clone());
-        // yarnColorCount isn't global because clone copies the references for the values in the more complex key-value pairs,
-        // which messes up the counts.  Sticking it here because I haven't bothered to write a deep-clone method yet
-        // storing hex values for each color here so that I can keep them paired with the right category for display purposes
-        def yarnColorCount =  [
-                'Black':['count':0,'color':'#000000'],
-                'Blue':['count':0,'color':'#92A8CD'],
-                'Blue-green':['count':0,'color':'#3D96AE'],
-                'Blue-purple':['count':0,'color':'#666699'],
-                'Brown':['count':0,'color':'#A47D7C'],
-                'Gray':['count':0,'color':'#CCCCCC'],
-                'Green':['count':0,'color':'#89A54E'],
-                'Natural/Undyed':['count':0,'color':'#FFFFE0'],
-                'Orange':['count':0,'color':'#DB843D'],
-                'Pink':['count':0,'color':'#FF9EDF'],
-                'Purple':['count':0,'color':'#80699B'],
-                'Red':['count':0,'color':'#AA4643'],
-                'Red-orange':['count':0,'color':'#FF5C33'],
-                'Red-purple':['count':0,'color':'#A3297A'],
-                'White':['count':0,'color':'#FFFFFF'],
-                'Yellow':['count':0,'color':'#FFD119'],
-                'Yellow-green':['count':0,'color':'#B5CA92'],
-                'Yellow-orange':['count':0,'color':'#FFCC00'],
-                'No Color Specified':['count':0,'color':'#E6E6E6']
-        ];
+        def yarnColorCount =  initializeYarnColorCounts(initializeColorMap.clone());
+
+        def yarnColorMetadata = initializeMapToMetadataContainer(initializeColorMap.clone());
+        def yarnWeightMetadata = initializeMapToMetadataContainer(initializeYarnWeightCounts.clone());
 
         def totalStash = 0;
 
@@ -154,18 +193,21 @@ class CalculateService {
                 def yarn = it.yarn;
                 totalStash++;
 
+                def photoUrl = it.has_photo ? it.first_photo.square_url : null;
+                def yarnMetadata = newObjectMetadata(it.name,it.permalink,photoUrl);
+
                 if(yarn && yarn.yarn_weight){
                     yarnWeightCount[yarn.yarn_weight.name]++;
+                    yarnWeightMetadata[yarn.yarn_weight.name].add(yarnMetadata);
                 }
 
                 if(it.color_family_name && yarnColorCount[it.color_family_name]){
                     yarnColorCount[it.color_family_name]['count']++;
+                    yarnColorMetadata[it.color_family_name].add(yarnMetadata);
                 }
                 else {
-                    if(it.color_family_name){
-                        println(it.color_family_name)
-                    }
                     yarnColorCount['No Color Specified']['count']++;
+                    yarnColorMetadata['No Color Specified'].add(yarnMetadata);
                 }
             }
         }
@@ -174,7 +216,7 @@ class CalculateService {
         yarnColorCount.each{
             it.value['percentage'] = (it.value['count']/totalStash)*100;
         }
-        return ['yarnWeight':yarnWeightCount, 'yarnColors':yarnColorCount]
+        return ['yarnWeight':yarnWeightCount, 'yarnColors':yarnColorCount, 'yarnColorMetadata':yarnColorMetadata, 'yarnWeightMetadata': yarnWeightMetadata]
     }
 
 

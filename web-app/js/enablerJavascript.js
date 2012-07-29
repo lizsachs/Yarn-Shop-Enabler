@@ -148,7 +148,7 @@ function createDynamicProjectCharts(projectType) {
         orderedYarnWeightCounts.push(yarnWeightData[orderedYarnWeightLabels[weightIndex]])
     }
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightSpan','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight', projectType);
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts, 'yarnWeightSpan','Projects by Yarn Weight for ' + projectType + ' Projects', 'Projects', 'Yarn Weight', projectType, "project");
     dojo.byId("projectResponse").innerHTML = "";
 }
 
@@ -171,26 +171,29 @@ function createDynamicStashCharts() {
     }
     genericPieChart(orderedColorPercentages,stashColorDiv,'Stash By Color',"",orderedColorsHex);
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null);
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null, "stash");
     dojo.byId("stashResponse").innerHTML = "";
 }
 
 function formatImage(src) {
+    if(!src){
+        return null;
+    }
     return '<img src="' + src + '" style="width: 75px; height: 75px;">'
 }
 
-function showDetailsDialog(projectType,yarnWeight){
+function showDetailsDialog(dataType,projectType,qualifier){
 
     if(dijit.byId("dataDialog")){
         dijit.byId("dataDialog").destroyRecursive();
     }
 
     var dataContentPane = new dijit.layout.ContentPane({
-        content:"Click a row to view the corresponding page in Ravelry.\n<div id='dataGridDiv'></div>"
+        content:"Click a row to view the corresponding page in Ravelry.<br><br><div id='dataGridDiv'></div>"
     });
 
     var dialog = new dijit.Dialog({
-        title: projectType + " Projects In " + yarnWeight + " Yarn",
+        title: (projectType ? projectType : "") + " " + (dataType == "project" ? "Project" : "Stash") + " In " + qualifier + " Yarn",
         id: "dataDialog",
         content:dataContentPane
     });
@@ -202,7 +205,17 @@ function showDetailsDialog(projectType,yarnWeight){
         items: []
     };
 
-    var data_list = chartData['patternMetadata'][projectType][yarnWeight];
+    var data_list = null;
+    if(dataType == "project"){
+        data_list = chartData['patternMetadata'][projectType][qualifier];
+    }
+    else if(dataType == "stash"){
+        data_list = stashData['yarnWeightMetadata'][qualifier];
+    }
+    else if(dataType == "stashColor"){
+        data_list = stashData['yarnColorMetadata'][qualifier];
+    }
+
     for(var i=0; i<data_list.length; i++){
         data.items.push(dojo.mixin({ id: i }, data_list[i]));
     }
@@ -221,8 +234,16 @@ function showDetailsDialog(projectType,yarnWeight){
             id: 'grid',
             store: store,
             structure: layout,
+            autoWidth:true,
             onRowClick: function(e){
-                window.open('http://www.ravelry.com/projects/' + userName + "/" + grid._getItemAttr(e.rowIndex,'permalink'))
+                var urlString = null;
+                if(dataType.contains("stash")){
+                    urlString = 'http://www.ravelry.com/people/' + userName + "/stash/" + grid._getItemAttr(e.rowIndex,'permalink')
+                }
+                else if(dataType == "project"){
+                    urlString = 'http://www.ravelry.com/projects/' + userName + "/" + grid._getItemAttr(e.rowIndex,'permalink')
+                }
+                window.open(urlString)
             }
         },
         'grid');
@@ -232,13 +253,10 @@ function showDetailsDialog(projectType,yarnWeight){
 
     /*Call startup() to render the grid*/
     grid.startup();
-
-
-
 }
 
 
-function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxisLabel, xAxisLabel, projectType){
+function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxisLabel, xAxisLabel, projectType, dataType){
     var chart;
     $(document).ready(function() {
         chart = new Highcharts.Chart({
@@ -249,6 +267,9 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxis
             },
             title: {
                 text: title
+            },
+            subtitle: {
+                text: 'click a column to see projects included in dataset'
             },
             xAxis: {
                 categories: yarnWeightLabels,
@@ -297,14 +318,13 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxis
                 point: {
                     events: {
                         click: function(event) {
-                            showDetailsDialog(projectType,this.category);
+                            showDetailsDialog(dataType,projectType,this.category);
                         }
                     }
                 }
             }]
         });
     });
-
 }
 
 function projectTypePieChart(patternTypeData){
@@ -381,6 +401,11 @@ function genericPieChart(data, renderTo, title, subtitle, hexColors){
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
+                    events: {
+                        click: function(event){
+                            showDetailsDialog('stashColor',null,event.point.name);
+                        }
+                    },
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,

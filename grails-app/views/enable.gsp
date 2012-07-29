@@ -7,7 +7,7 @@
         /*Grid need a explicit width/height by default*/
     #grid {
         width: 43em;
-        height: 200px;
+        height: 20em;
     }
     .dojoxGridCell {font-size: 12px;}
     h2 {margin-top: 0;}
