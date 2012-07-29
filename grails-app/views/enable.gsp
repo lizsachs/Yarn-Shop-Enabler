@@ -14,7 +14,7 @@
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="js/Highcharts-2/js/highcharts.src.js" type="text/javascript"></script>
-    <link href="/rav/plugins/dojo-1.6.1.7/js/dojo/1.6.1/dojox/grid/resources/claroGrid.css" type="text/css" rel="stylesheet">
+    <link href="plugins/dojo-1.6.1.7/js/dojo/1.6.1/dojox/grid/resources/claroGrid.css" type="text/css" rel="stylesheet">
     <dojo:header theme="claro" />
     <script src="js/enablerJavascript.js" type="text/javascript" >
     </script>

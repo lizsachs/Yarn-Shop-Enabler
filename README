@@ -40,9 +40,11 @@ Known Issues
 
 
 Further Development
+* *this is in progress* -> All of the test users get curious about the data and what to see WHICH projects or stash fall into each category (especially ones that don't have labels). Maybe make it so that we can click bars in the bar charts and bring up a little window to browse projects or stash items with links to the rav pages.
+
+
 I've been having fun with this project, so I'm bursting with ideas for further development
 * stash charts - add chart for fiber type?
-* All of the test users get curious about the data and what to see WHICH projects or stash fall into each category (especially ones that don't have labels). Maybe make it so that we can click bars in the bar charts and bring up a little window to browse projects or stash items with links to the rav pages.
 * add a drill down to the yarn weight chart so that users can see how much yardage they typically use for a given weight of yarn (this would also filter by project type if the main graph was already filtered)
 * add some analysis of fiber type to project data?  Casey just added this to the API, and I haven't had time to do much with it. I decided to leave it out for now because it would require doing a whole extra set of API calls to grab yarn objects, and I didn't want to slow the calculations down or hammer the database any more than I already am.
 * I think it would be really cool to take these metrics to make recommendations for people who either don't want to deal with chart reading or don't have enough knitting/crochet knowledge to use the data themselves. I'm picturing an app that someone who loves a Raveler could use to get guidelines for gift shopping.  Rather than trying to sift through the charts, the app could recommend that a Raveler particularly likes blue sport-weight, or that if someone wanted to buy the Raveler yarn to make a hat they'd do well to consider brown worsted merinos.  The user could go to a yarn shop armed with this information to make more educated gift buying decisions.   (For features like this, it would be useful for non-Ravelry users to be able to see agregated data in this style without needing an authentication.)

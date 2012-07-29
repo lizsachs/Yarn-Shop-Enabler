@@ -189,7 +189,7 @@ function showDetailsDialog(projectType,yarnWeight){
     });
 
     var dialog = new dijit.Dialog({
-        title: "Programmatic Dialog Creation",
+        title: projectType + " Projects In " + yarnWeight + " Yarn",
         id: "dataDialog",
         content:dataContentPane
     });
