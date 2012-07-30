@@ -46,7 +46,7 @@ Known Issues
 * The pages are ugly because I only gave them a cursory styling.
 * Brute force API calls to aggregate data are slow and make a lot of likely unnecessary database calls.  A bulk API call would be nice here, but I didn't want to make a request for a highly specific API call for a toy project.
 * in the detail browser, setting the row height value makes the header text disappear. This appears to be a known issue with dojo <http://bugs.dojotoolkit.org/ticket/12296>
-* haven't handled every case where I could get weird data back from Ravelry - mostly handling these on a case-by-case basis as I encountered them for efficiency of what I could get done this week. Haven't handled the case where a username doesn't exist yet, either.
+* haven't handled every case where I could get weird data back from Ravelry - mostly handling these on a case-by-case basis as I encountered them for efficiency of what I could get done this week. Notably, the YarhHarlot has no stash and somewhere in her projects there's a failure I haven't tracked down yet.  Haven't handled the case where a username doesn't exist yet, either.
 
 Further Development
 I've been having fun with this project, so I'm bursting with ideas for further development
