@@ -18,7 +18,7 @@ After the charts are loaded, the user can click a slice of the project pie to re
 * Dojo 1.6.1.7 <http://dojotoolkit.org/>
 * oauth 2.0.1 (grails Scribe plugin) <http://aiten.github.com/grails-oauth-scribe/>
 * Highcharts-2 <http://www.highcharts.com/>
-* Ravelry API
+* Ravelry API <http://www.ravelry.com/groups/ravelry-api/pages/API-Documentation>
 
 I wrote this app in Grails because it's the web app framework I'm familiar with from my day job.  I'm currently hosting it on Amazon EC2 with AWS Elastic Beanstalk running Tomcat 7 - this is mainly because I didn't really have a place to host a web app already and was interested in checking out how the AWS free tier of services work.  Elastic Beanstalk turns out to be pretty slick - I was impressed that I was able to sign up for an account, upload my war file, and had my app up and running in a matter of minutes.  I didn't care to persist anything for long amounts of time, so I didn't bother with a database implementation at this point.
 
