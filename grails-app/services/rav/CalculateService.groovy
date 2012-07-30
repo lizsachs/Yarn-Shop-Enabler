@@ -182,7 +182,8 @@ class CalculateService {
         def totalStash = 0;
 
         stash.stash.each{
-            if(it['stash_status']['id'] == 1){
+            //only counting stash that is still in hand; if stash status is null, handle that case by ignoring it
+            if(it['stash_status'] && it['stash_status']['id'] == 1){
                 def yarn = it.yarn;
                 totalStash++;
 
@@ -190,8 +191,12 @@ class CalculateService {
                 def yarnMetadata = newObjectMetadata(it.name,it.permalink,photoUrl);
 
                 if(yarn && yarn.yarn_weight){
-                    yarnWeightCount[yarn.yarn_weight.name]++;
-                    yarnWeightMetadata[yarn.yarn_weight.name].add(yarnMetadata);
+                    println(it.name);
+                    //todo: I should probably handle this by adding weights that aren't in the main list to my map, but I don't have time right this moment, so we'll skip weird sized yarn
+                    if(yarnWeightCount.containsKey(yarn.yarn_weight.name)){
+                        yarnWeightCount[yarn.yarn_weight.name]++;
+                        yarnWeightMetadata[yarn.yarn_weight.name].add(yarnMetadata);
+                    }
                 }
 
                 if(it.color_family_name && yarnColorCount[it.color_family_name]){
