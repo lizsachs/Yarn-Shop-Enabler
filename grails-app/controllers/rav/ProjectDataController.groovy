@@ -10,8 +10,9 @@ class ProjectDataController {
     HttpService httpService
     def calculateService
 
-    OauthService oauthService // or new OauthService() would work if you're not in a spring-managed class.
+    OauthService oauthService
 
+    // get oauth token for authenticated API calls
     Token getToken() {
         String sessionKey = oauthService.findSessionKeyForAccessToken('ravelry')
         def token = session[sessionKey];
@@ -21,6 +22,7 @@ class ProjectDataController {
         return token
     }
 
+    // control loop for project calculations
     def getProjectStats() {
         def returnValues = [:];
 
@@ -47,6 +49,7 @@ class ProjectDataController {
 
     }
 
+    // control loop for stash calculations
     def getStashStats() {
         def returnValues = [:];
 

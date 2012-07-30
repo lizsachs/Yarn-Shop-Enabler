@@ -6,21 +6,6 @@ class CalculateService {
 
     def noYarnSpecified = 'No Yarn Specified';
 
-
-    def initializeYardageMap = [
-            ['0-150':['count':0,'min':0,'max':150]],
-            ['150-300':['count':0,'min':150,'max':300]],
-            ['300-450':['count':0,'min':300,'max':450]],
-            ['450-600':['count':0,'min':450,'max':600]],
-            ['600-750':['count':0,'min':600,'max':750]],
-            ['750-900':['count':0,'min':750,'max':900]],
-            ['900-1200':['count':0,'min':900,'max':1200]],
-            ['1200-1500':['count':0,'min':1200,'max':1500]],
-            ['1500-1800':['count':0,'min':1500,'max':1800]],
-            ['1800-2100':['count':0,'min':1800,'max':2100]],
-            ['2100+':['count':0,'min':2100,'max':Integer.MAX_VALUE]]
-    ];
-
     def initializeYarnWeightCounts = [
             'Thread':null,
             'Cobweb':null,
@@ -59,6 +44,8 @@ class CalculateService {
             'No Color Specified':null
     ]
 
+    // calculate the project data.  Count projects at each yarn weight and each type of project.  Store in a project type -> yarn weight hierarchy so that the charts can be interactive
+    // and reload the weight counts based on project type
     // I put all of this in one service call to minimize calls to the database rather than having separate calculations for each type of data, only need to iterate through projects once.
     def countProjectDetails(userName, allProjects, token) {
 
@@ -126,6 +113,7 @@ class CalculateService {
         return ['yarnWeight':yarnWeightCount,'patternTypePercentages':patternTypePercentages,'patternTypes':patternTypeCount.keySet(),'patternMetadata':patternMetadata];
     }
 
+    // I use the same code in the front end for displaying object metadata for all of the graphs, so I initialize it generically and want to make sure they always stay in sync.
     def newObjectMetadata(name,permalink,photoUrl){
         def objectMetadata = ['name': null, 'permalink': null, 'photoUrl': null];
         objectMetadata['name'] = name;
@@ -134,6 +122,7 @@ class CalculateService {
         return objectMetadata;
     }
 
+    // a set of initializers to help avoide deep-copy issues with multi-tiered maps.  Construct the top level keys in one place, then initialize the deeper levels as needed.
     def initializeMapToZero (map){
         def initializedMap = map.collectEntries{key,value -> [key,0]};
         return initializedMap;
@@ -144,6 +133,7 @@ class CalculateService {
         return initializedMap;
     }
 
+    // I'm storing the hex colors here so that I can make sure the pie slice colors match the categories in the front end
     def initializeYarnColorCounts(map){
 
         def initializedMap = map.collectEntries{key,value -> [key,['count':0,'color':null]]}
@@ -171,6 +161,7 @@ class CalculateService {
         return initializedMap;
     }
 
+    // return an array of percentages that matches the counts passed in
     def calculatePercentages(counts,total){
         def percentages = []
         counts.each{
@@ -179,6 +170,8 @@ class CalculateService {
         percentages;
     }
 
+    // calculate metrics for stash. We're interested in how many stash items are in each of the yarn weight and yarn color categories
+    // simultaneously build up lists of stash metadata that falls into each category so that we can display metadata summaries
     def countStashDetails(userName, stash, token){
         def yarnWeightCount = initializeMapToZero(initializeYarnWeightCounts.clone());
         def yarnColorCount =  initializeYarnColorCounts(initializeColorMap.clone());

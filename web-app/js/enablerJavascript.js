@@ -10,7 +10,7 @@ dojo.require("dojo.data.ItemFileWriteStore");
 dojo.require("dijit.layout.ContentPane");
 
 
-
+// keep data here once it's been processed so we can re-render the charts at will
 var chartData;
 var stashData;
 var userName;
@@ -38,6 +38,7 @@ dojo.ready(function(){
         label: "Enable!",
         onClick: function(){
             userName = dojo.byId('userName').value;
+            // kick off both calls using AJAX requests so that the user can get charts that run faster more quickly
             getProjectData();
             getStashData();
         }
