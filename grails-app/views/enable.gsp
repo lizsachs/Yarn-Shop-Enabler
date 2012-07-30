@@ -22,12 +22,12 @@
 </head>
 <body class="claro">
 <div align="center"><h1>Yarn Store Enabler</h1>
-<blockquote>
-    <p>Which Raveler would you like to enable? (This may take a few moments for active fiber enthusiasts!)</p>
-    <input type="text" dojoType="dijit.form.TextBox" name="userName" id="userName" value="blacktabi">
-</input>
-    <div id="getDataButton"></div>
-</blockquote>
+    <blockquote>
+        <p>Which Raveler would you like to enable? (This may take a few moments for active fiber enthusiasts!)</p>
+        <input type="text" dojoType="dijit.form.TextBox" name="userName" id="userName" value="blacktabi">
+    </input>
+        <div id="getDataButton"></div>
+    </blockquote>
 </div>
 
 <div align="center">
@@ -43,12 +43,11 @@
 
 <div align="center">
     <h2>Stash Data</h2>
-<span id="stashResponse"></span>
-<div id="stashStandby" style="width: 800px; height:100px; background-color: white; "></div>
+    <span id="stashResponse"></span>
+    <div id="stashStandby" style="width: 800px; height:100px; background-color: white; "></div>
 
-<span id="stashColumnChartDiv" style="width:45%; float:left"></span>
-    <div id="stashColorDiv" style="width:45%; "></div>
-    <div id="stashFiberDiv" style="width:45%"></div>
+    <span id="stashColumnChartSpan" style="width:45%; float:left"></span>
+    <span id="stashColorSpan" style="width:45%; "></span>
 </div>
 
 </body>

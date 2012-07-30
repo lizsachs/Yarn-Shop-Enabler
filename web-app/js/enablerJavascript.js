@@ -94,7 +94,7 @@ function getProjectData() {
 
 function getStashData() {
     dojo.byId("yarnWeightSpan").innerHTML = "";
-    dojo.byId("stashColorDiv").innerHTML = "";
+    dojo.byId("stashColorSpan").innerHTML = "";
     dojo.style("stashStandby",{"height":"100px"});
     var stashStandby = new dojox.widget.Standby({
         target: "stashStandby"
@@ -103,7 +103,7 @@ function getStashData() {
     stashStandby.startup();
     stashStandby.show();
 
-    dojo.byId("stashColumnChartDiv").innerHTML = "";
+    dojo.byId("stashColumnChartSpan").innerHTML = "";
 
     var xhrArgs = {
         url: "projectData/getStashStats",
@@ -169,9 +169,9 @@ function createDynamicStashCharts() {
             orderedColorsHex.push(colorData[colorIndex]['color'])
         }
     }
-    genericPieChart(orderedColorPercentages,stashColorDiv,'Stash By Color',"click a pie slick to see stash included in dataset",orderedColorsHex);
+    genericPieChart(orderedColorPercentages,stashColorSpan,'Stash By Color',"click a pie slick to see stash included in dataset",orderedColorsHex);
 
-    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null, "stash");
+    yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartSpan','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null, "stash");
     dojo.byId("stashResponse").innerHTML = "";
 }
 
