@@ -170,7 +170,7 @@ function createDynamicStashCharts() {
             orderedColorsHex.push(colorData[colorIndex]['color'])
         }
     }
-    genericPieChart(orderedColorPercentages,stashColorSpan,'Stash By Color',"click a pie slick to see stash included in dataset",orderedColorsHex);
+    genericPieChart(orderedColorPercentages,stashColorSpan,'Stash By Color',"click a pie slice to see stash included in dataset",orderedColorsHex);
 
     yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartSpan','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null, "stash");
     dojo.byId("stashResponse").innerHTML = "";
