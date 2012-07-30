@@ -169,7 +169,7 @@ function createDynamicStashCharts() {
             orderedColorsHex.push(colorData[colorIndex]['color'])
         }
     }
-    genericPieChart(orderedColorPercentages,stashColorDiv,'Stash By Color',"",orderedColorsHex);
+    genericPieChart(orderedColorPercentages,stashColorDiv,'Stash By Color',"click a pie slick to see stash included in dataset",orderedColorsHex);
 
     yarnWeightChart(orderedYarnWeightLabels,orderedYarnWeightCounts,'stashColumnChartDiv','Stash by Yarn Weight', 'Stash', 'Yarn Weight', null, "stash");
     dojo.byId("stashResponse").innerHTML = "";
@@ -235,8 +235,8 @@ function showDetailsDialog(dataType,projectType,qualifier){
             store: store,
             structure: layout,
             autoWidth:true,
-            rowHeight:75,
-            autoheight:6,
+            rowHeight:80,
+            autoHeight:7,
             onRowClick: function(e){
                 var urlString = null;
                 if(dataType.indexOf('stash') !== -1){
@@ -254,6 +254,7 @@ function showDetailsDialog(dataType,projectType,qualifier){
     dojo.byId("dataGridDiv").appendChild(grid.domNode);
 
     /*Call startup() to render the grid*/
+    dojo.style('dataDialog','top','200px');
     grid.startup();
 }
 
@@ -271,7 +272,7 @@ function yarnWeightChart(yarnWeightLabels,yarnWeightData, renderTo, title, yAxis
                 text: title
             },
             subtitle: {
-                text: 'click a column to see projects included in dataset'
+                text: 'click a column to see items included in dataset'
             },
             xAxis: {
                 categories: yarnWeightLabels,
