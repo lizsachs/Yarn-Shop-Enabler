@@ -14,20 +14,22 @@ After the charts are loaded, the user can click a slice of the project pie to re
 
 
 **Technology**
-Grails 2.1.0 <http://grails.org/>
-Dojo 1.6.1.7 <http://dojotoolkit.org/>
-oauth 2.0.1 (grails Scribe plugin) <http://aiten.github.com/grails-oauth-scribe/>
-Highcharts-2 <http://www.highcharts.com/>
-Ravelry API
+* Grails 2.1.0 <http://grails.org/>
+* Dojo 1.6.1.7 <http://dojotoolkit.org/>
+* oauth 2.0.1 (grails Scribe plugin) <http://aiten.github.com/grails-oauth-scribe/>
+* Highcharts-2 <http://www.highcharts.com/>
+* Ravelry API
 
 I wrote this app in Grails because it's the web app framework I'm familiar with from my day job.  I'm currently hosting it on Amazon EC2 with AWS Elastic Beanstalk running Tomcat 7 - this is mainly because I didn't really have a place to host a web app already and was interested in checking out how the AWS free tier of services work.  Elastic Beanstalk turns out to be pretty slick - I was impressed that I was able to sign up for an account, upload my war file, and had my app up and running in a matter of minutes.  I didn't care to persist anything for long amounts of time, so I didn't bother with a database implementation at this point.
 
 
 **High level technical overview:**
+
 The current implementation of the Yarn Store Enabler (YSE) authenticates with Ravelry, then brings up a dialog where the user can enter the name of his/her favorite Raveler.  From here, I make dual AJAX request to kick off my analysis and eventually populate the page.  I fire off two because the stash request is fast while the projects one is slow - this way I can populate the stash charts so the user has something to play with while waiting for the projects analysis to return.  In the calculate class I grab a list of the given user's projects from the Ravelry API, then iterate over them to gather data about the projects, project details, and patterns used. The stash line of code works similarly, but doesn't require extra database calls so it's faster.  Once I've aggregated the data I want to chart, I return it to the Javascript layer to render a few Highcharts charts and the object details boxes. The returned data structures are sort of large and complicated so that I can hold everything in the front end and keep the user experience clicking through charts fast and responsive.
 
 
 **Overview of Code**
+
 * index.gsp and enable.gsp - basic HTML pages for the index page and main page.  These are pretty bare bones because most of the page is populated in javascript.
 * enablerJavascript.js - Javascript lives here.  There's text field for the Raveler's username and a button to call the get data functions that fire off AJAX calls for each type of data (I call them separately so the quicker charts will show up faster and give the user something to look at while slower charts calculate), a function to drive the chart creation so that I can easily re-render them with filtered data, and a couple chart-construction functions.  This file has grown larger and more unwieldy than I expected through adding new features; it's in need of a refactor and cleanup (I know the two pie chart functions could be factored into one generic function), but my day job is calling.
 * ProjectDataController.groovy - I have a single controller class, which currently has methods for getting an oauth token and a generic "get data" method that makes calls to the calculation service methods.  I'm likely going to refactor this a bit soon to have separate methods for calculating a Raveler's project and stash data so that those can be loaded separately from the front end.  (There are a few stubbed out sections for stash metrics I haven't implemented yet)
@@ -37,6 +39,7 @@ The current implementation of the Yarn Store Enabler (YSE) authenticates with Ra
 
 
 **Known Issues**
+
 * I currently store the auth token in the session, so once the session times out the user has to re-authenticate. I figured nobody is going to be using this for large amounts of time, so I focused attention elsewhere given a short dev timeline.
 * The pages are ugly because I only gave them a cursory styling.
 * Brute force API calls to aggregate data are slow and make a lot of likely unnecessary database calls.  A bulk API call would be nice here, but I didn't want to make a request for a highly specific API call for a toy project.
@@ -44,6 +47,7 @@ The current implementation of the Yarn Store Enabler (YSE) authenticates with Ra
 * haven't handled every case where I could get weird data back from Ravelry - mostly handling these on a case-by-case basis as I encountered them for efficiency of what I could get done this week. Notably, the YarhHarlot has no stash and somewhere in her projects there's a failure I haven't tracked down yet.  Haven't handled the case where a username doesn't exist yet, either.
 
 **Further Development**
+
 I've been having fun with this project, so I'm bursting with ideas for further development
 * it would be nice to have some analysis of how much yardage the Ravelery typically uses for certain types of projects. Average yardage for sport weight, average yardage for sport weight hats, etc. That would probably be the most useful feature for a fiber person standing in a yarn store trying to decide how much yarn to buy in an impulse purchase situation.
 * add some analysis of fiber type?  Casey just added this to the API, and I haven't had time to do much with it. I decided to leave it out for now because it would require doing a whole extra set of API calls to grab yarn objects, and I didn't want to slow the calculations down or hammer the database any more than I already am.
